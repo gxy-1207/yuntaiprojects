@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ytfu.yuntaifawu.ui.pay.act.WantRewardActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="一次悬赏咨询,十秒律师解答,无限畅聊,律师24小时在线"
+            android:textColor="#FFEF6A6A"
+            android:textSize="12sp"
+            tools:ignore="HardcodedText" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_advisory_money"
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
+            android:layout_marginTop="14dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="4"
+            tools:listitem="@layout/item_pay_money" />
+
+
+        <!--        <RadioGroup-->
+        <!--            android:id="@+id/rg_advisory_money_group"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="14dp"-->
+        <!--            android:orientation="horizontal">-->
+
+        <!--            <RadioButton-->
+        <!--                android:id="@+id/rb_advisory_money_one"-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="35dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:background="@drawable/tv_consulting_one_bg"-->
+        <!--                android:button="@android:color/transparent"-->
+        <!--                android:checked="true"-->
+        <!--                android:gravity="center"-->
+        <!--                android:paddingLeft="15dp"-->
+        <!--                android:paddingTop="8dp"-->
+        <!--                android:paddingRight="15dp"-->
+        <!--                android:paddingBottom="8dp"-->
+        <!--                android:tag="20"-->
+        <!--                android:text="悬赏5元"-->
+        <!--                android:textColor="#EF6A6A"-->
+        <!--                android:textSize="10sp" />-->
+
+        <!--            <RadioButton-->
+        <!--                android:id="@+id/rb_advisory_money_two"-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="35dp"-->
+        <!--                android:layout_marginStart="4dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:background="@drawable/tv_consulting_two_bg"-->
+        <!--                android:button="@android:color/transparent"-->
+        <!--                android:gravity="center"-->
+        <!--                android:paddingLeft="15dp"-->
+        <!--                android:paddingTop="8dp"-->
+        <!--                android:paddingRight="15dp"-->
+        <!--                android:paddingBottom="8dp"-->
+        <!--                android:tag="30"-->
+        <!--                android:text="悬赏15元"-->
+        <!--                android:textColor="@color/white"-->
+        <!--                android:textSize="10sp" />-->
+
+        <!--            <RadioButton-->
+        <!--                android:id="@+id/rb_advisory_money_three"-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="35dp"-->
+        <!--                android:layout_marginStart="4dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:background="@drawable/tv_consulting_one_bg"-->
+        <!--                android:button="@android:color/transparent"-->
+        <!--                android:gravity="center"-->
+        <!--                android:paddingLeft="15dp"-->
+        <!--                android:paddingTop="8dp"-->
+        <!--                android:paddingRight="15dp"-->
+        <!--                android:paddingBottom="8dp"-->
+        <!--                android:tag="50"-->
+        <!--                android:text="悬赏25元"-->
+        <!--                android:textColor="#EF6A6A"-->
+        <!--                android:textSize="10sp" />-->
+
+        <!--            <RadioButton-->
+        <!--                android:id="@+id/rb_advisory_money_four"-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="35dp"-->
+        <!--                android:layout_marginStart="4dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:background="@drawable/tv_consulting_two_bg"-->
+        <!--                android:button="@android:color/transparent"-->
+        <!--                android:gravity="center"-->
+        <!--                android:paddingLeft="15dp"-->
+        <!--                android:paddingTop="8dp"-->
+        <!--                android:paddingRight="15dp"-->
+        <!--                android:paddingBottom="8dp"-->
+        <!--                android:tag="30"-->
+        <!--                android:text="悬赏35元"-->
+        <!--                android:textColor="@color/white"-->
+        <!--                android:textSize="10sp" />-->
+
+        <!--        </RadioGroup>-->
+
+
+        <EditText
+            android:id="@+id/et_advisory_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/et_price_bg"
+            android:ellipsize="end"
+            android:hint="自定义悬赏金额"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:paddingStart="4dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="4dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:singleLine="true"
+            android:textColorHint="#FF999999"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_advisory_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="23dp"
+        android:background="@drawable/bg_update_btn"
+        android:gravity="center"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:text="提交悬赏"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Toolbar高度 -->
+    <!-- 首页底部选项卡高度 -->
+    <!--详情页等底部按钮高度-->
+
+    <!--楼盘类型 tag padding-->
+
+    <!-- 页面通用左右边距 -->
+    <dimen name="normal_margin_left">20dp</dimen>
+    <dimen name="normal_margin_right">20dp</dimen>
+
+    <!--客户右上角弹出菜单三角所属矩形的宽高-->
+
+    <!--客户信息条目标题-内容间距-->
+
+    <!--楼盘详情轮播图高度-->
+    <!--四个字标题宽度（购买时间：）-->
+
+    <!--页面底部按钮高度-->
+
+    <!-- 新房筛选弹出PopupWindow高度 -->
+    <!--新房筛选弹框列表高度-->
+    <!--新房筛选弹框底部按钮高度-->
+</resources>

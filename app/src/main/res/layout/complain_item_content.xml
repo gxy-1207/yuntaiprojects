@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent_half"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="30dp"
+    android:paddingTop="22dp"
+    android:paddingEnd="30dp"
+    android:paddingBottom="22dp">
+
+    <ImageView
+        android:id="@+id/iv_complaint"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tool:src="@drawable/logo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_complaint_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColor_33"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toRightOf="@id/iv_complaint"
+            app:layout_constraintTop_toTopOf="@+id/iv_complaint"
+            tool:text="婚姻家庭" />
+
+        <TextView
+            android:id="@+id/tv_complaint_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/textColor_88"
+            android:textSize="13sp"
+            app:layout_constraintLeft_toRightOf="@id/iv_complaint"
+            app:layout_constraintTop_toBottomOf="@id/tv_complaint_title"
+            tool:text="婚姻家庭婚姻家庭婚姻家庭婚姻家庭婚姻家庭婚姻家庭婚姻家庭婚姻家庭婚姻家庭婚姻家庭" />
+
+    </LinearLayout>
+
+</LinearLayout>

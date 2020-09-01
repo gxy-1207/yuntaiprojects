@@ -1,0 +1,12 @@
+apply plugin: 'java-library'
+/*设置编译使用的编码*/
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":mvp_base")
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

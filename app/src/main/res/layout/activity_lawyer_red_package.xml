@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F2F2"
+    android:orientation="vertical"
+    tools:context="com.ytfu.yuntaifawu.ui.redpackage.act.UserRedPackageActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <com.ytfu.yuntaifawu.utils.view.RatioViewGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:rvg_ratio="2.2676">
+
+            <com.ytfu.yuntaifawu.utils.view.RatioImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/bg_red_package_detail_top"
+                app:riv_ratio="2.6785" />
+
+            <ImageView
+                android:id="@+id/iv_detail_avatar"
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@null"
+                android:src="@mipmap/logo" />
+        </com.ytfu.yuntaifawu.utils.view.RatioViewGroup>
+
+        <TextView
+            android:id="@+id/tv_detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="#ff343434"
+            android:textSize="14sp"
+            tools:text="云台8888" />
+
+        <TextView
+            android:id="@+id/tv_detail_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:textColor="#ff888888"
+            android:textSize="15sp"
+            tools:text="请感受我真诚的谢意！" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/tv_detail_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="10.00"
+                android:textColor="#ffbe4c3a"
+                android:textSize="35sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="元"
+                android:textColor="#FF343434"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="30dp"
+            android:text="领取成功"
+            android:textColor="#ff888888"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent_half"
+    >
+
+    <EditText
+        android:id="@+id/ed_search_contract"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/search_contract_edittext_shape"
+        android:drawableLeft="@mipmap/icon_readingglass"
+        android:paddingStart="15dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:drawablePadding="5dp"
+        android:hint="搜索关键词"
+        android:textColorHint="@color/textColor_AA"
+        android:textSize="12sp"
+        android:textColor="@color/textColoe_303030"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"
+        />
+
+</LinearLayout>

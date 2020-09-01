@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ytfu.yuntaifawu">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <!--suppress DeprecatedClassUsageInspection -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_WAP_PUSH" />
+    <uses-permission android:name="android.permission.RECEIVE_MMS" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:name=".app.App"
+        android:allowBackup="false"
+        android:icon="@mipmap/icon_app_logo"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/icon_app_logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="LockedOrientationActivity"
+        tools:replace="android:allowBackup"
+        tools:targetApi="q">
+
+        <meta-data
+            android:name="BaiduMobAd_STAT_ID"
+            android:value="281c1d6cd7" />
+
+        <!-- 是否开启错误日志统计，默认为false -->
+        <meta-data
+            android:name="BaiduMobAd_EXCEPTION_LOG"
+            android:value="true" />
+
+        <!-- 日志仅在wifi网络下发送，默认为false -->
+        <meta-data
+            android:name="BaiduMobAd_ONLY_WIFI"
+            android:value="false" />
+
+        <!-- 是否获取基站位置信息 ,默认为true -->
+        <meta-data
+            android:name="BaiduMobAd_CELL_LOCATION"
+            android:value="true" />
+
+        <!-- 是否获取GPS位置信息，默认为true -->
+        <meta-data
+            android:name="BaiduMobAd_GPS_LOCATION"
+            android:value="true" />
+
+        <!-- 是否获取WIFI位置信息，默认为true -->
+        <meta-data
+            android:name="BaiduMobAd_WIFI_LOCATION"
+            android:value="true" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.ytfu.yuntaifawu.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths"
+                tools:replace="android:resource" />
+        </provider>
+
+
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="640" />
+        <!-- 友盟Channel -->
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${channel}" />
+        <!--Shareinstall统计-->
+        <meta-data
+            android:name="com.shareinstall.APP_KEY"
+            android:value="KRBK6A7EF6R67B" />
+
+        <!--环信-->
+        <!--9.0-->
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+        <!-- 设置环信应用的AppKey -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="1107200401019981#msg" />
+        <!-- 声明SDK所需的service SDK核心功能-->
+        <service
+            android:name="com.hyphenate.chat.EMChatService"
+            android:exported="true"
+            tools:ignore="ExportedService" />
+        <service
+            android:name="com.hyphenate.chat.EMJobService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- 声明SDK所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".ui.home.activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="ebqp4989" />
+            </intent-filter>
+        </activity>
+        <activity
+
+            android:name=".ui.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!-- 音频列表 -->
+        <activity
+            android:name=".ui.home.activity.AudioListActivity"
+            android:screenOrientation="portrait" />
+        <!-- 音频详情 -->
+        <!-- 合同列表 -->
+        <activity
+            android:name=".ui.home.activity.ActivityContractList"
+            android:screenOrientation="portrait" />
+        <!-- 合同详情 -->
+        <activity
+            android:name=".ui.lvshihetong.activity.ActivityContractDetails"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <!-- 验证码登录 -->
+        <activity
+            android:name=".ui.login.activity.LoginCodeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 账号密码登录 -->
+        <activity
+            android:name=".ui.login.activity.LoginPhonePwdActivity"
+            android:screenOrientation="portrait" />
+        <!-- 设置密码 -->
+        <activity
+            android:name=".ui.register.activity.SetPwdActivity"
+            android:screenOrientation="portrait" />
+        <!-- 忘记密码 -->
+        <activity
+            android:name=".ui.login.activity.ForgetPwdActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人信息 -->
+        <!-- 我的收藏 -->
+        <activity
+            android:name=".ui.mine.activity.ActivityMineCollection"
+            android:screenOrientation="portrait" />
+        <!-- 购买记录 -->
+        <activity
+            android:name=".ui.mine.activity.ActivityPurchaseRecord"
+            android:screenOrientation="portrait" />
+        <!-- 邀请记录 -->
+        <activity
+            android:name=".ui.mine.activity.ActivityInvitationRecord"
+            android:screenOrientation="portrait" />
+        <!-- 我的合同库 -->
+        <activity
+            android:name=".ui.mine.activity.ActivityMyContractLibrary"
+            android:screenOrientation="portrait" />
+        <!-- 我的音频库 -->
+        <activity
+            android:name=".ui.mine.activity.ActivityMyAudioLibrary"
+            android:screenOrientation="portrait" />
+        <!-- 关于我们 -->
+        <activity
+            android:name=".ui.mine.activity.ActivityGywm"
+            android:screenOrientation="portrait" />
+        <!-- 修改个人信息 -->
+        <!-- 合同列表数据 -->
+        <activity
+            android:name=".ui.lvshihetong.activity.ActivityContractDataLiist"
+            android:screenOrientation="portrait" />
+        <!-- 预览 -->
+        <activity
+            android:name=".ui.mine.activity.ActivityPreview"
+            android:screenOrientation="portrait" />
+        <!-- 音频分类  咨询 -->
+        <activity
+            android:name=".ui.home.activity.ActivityClassification"
+            android:screenOrientation="portrait" />
+        <!-- 起诉状 -->
+        <activity
+            android:name=".ui.qisuzhuang.activity.ActivityQiSuZhuang"
+            android:screenOrientation="portrait" />
+        <!--历史起诉状-->
+        <activity
+            android:name=".ui.qisuzhuang.activity.ActivityQszHistoryList"
+            android:screenOrientation="portrait" />
+        <!-- 起诉状详情 -->
+        <activity
+            android:name=".ui.qisuzhuang.activity.ActivityQszXinagqing"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <!-- 开庭助手 -->
+        <activity
+            android:name=".ui.kaitingzhushou.activity.ActivityOpenHelper"
+            android:screenOrientation="portrait" />
+        <!-- 代理词 -->
+        <activity
+            android:name=".ui.kaitingzhushou.activity.ActivityDaiLiCi"
+            android:screenOrientation="portrait" />
+        <!-- 开庭助手详情 -->
+        <activity
+            android:name=".ui.kaitingzhushou.activity.ActivityOpenHelperDetails"
+            android:screenOrientation="portrait" />
+        <!-- 开庭助手 证据清单 -->
+        <activity
+            android:name=".ui.kaitingzhushou.activity.ActivityZhengJuQingDan"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <!-- 开庭助手 企业需另外提供 -->
+        <activity
+            android:name=".ui.kaitingzhushou.activity.ActivityFirmlwtg"
+            android:screenOrientation="portrait" />
+        <!-- 开庭助手 伤残鉴定 -->
+        <activity
+            android:name=".ui.kaitingzhushou.activity.ActivityScjd"
+            android:screenOrientation="portrait" />
+        <!--开庭助手  添加开庭助手-->
+        <activity
+            android:name=".ui.kaitingzhushou.activity.ActivitySelectIndictment"
+            android:screenOrientation="portrait" />
+        <!-- 开庭助手  工伤鉴定 -->
+        <activity
+            android:name=".ui.kaitingzhushou.activity.ActivityGsjd"
+            android:screenOrientation="portrait" />
+        <!-- 法律顾问 -->
+        <activity
+            android:name=".ui.falvguwen.activity.ActivityLegalAdviser"
+            android:screenOrientation="portrait" />
+        <!-- 法律顾问购买 -->
+        <activity
+            android:name=".ui.falvguwen.activity.ActivityLegalAdviserDetailsBuy"
+            android:screenOrientation="portrait" />
+        <!-- 法律顾问下载 -->
+        <activity
+            android:name=".ui.falvguwen.activity.ActivityLegalAdviserDetailsDowLoad"
+            android:screenOrientation="portrait" />
+        <!-- 法律顾问在职 -->
+        <activity
+            android:name=".ui.falvguwen.activity.ActivityLegalAdviserZaiZhiList"
+            android:screenOrientation="portrait" />
+        <!-- 法律顾问离职入职 -->
+        <activity
+            android:name=".ui.falvguwen.activity.ActivityLegalAdviserLizhiRuzhiList"
+            android:screenOrientation="portrait" />
+        <!-- 用户协议 -->
+        <activity
+            android:name=".ui.register.activity.ActivityYhxy"
+            android:screenOrientation="portrait" />
+        <!--隐私协议-->
+        <activity
+            android:name=".ui.register.activity.ActivityYs"
+            android:screenOrientation="portrait" />
+        <!--起诉状详情分类-->
+        <activity
+            android:name=".ui.qisuzhuang.activity.ActivityQszXqClassify"
+            android:screenOrientation="portrait" />
+        <!--起诉状详情预览-->
+        <activity
+            android:name=".ui.qisuzhuang.activity.ActivityQszYlXq"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <!--添加证据清单-->
+        <activity
+            android:name=".ui.qisuzhuang.activity.ActivityZjqdAddList"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <!--证据清单详情-->
+        <activity
+            android:name=".ui.qisuzhuang.activity.ActivityZjqdXq"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <!--微信-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--个人信息-->
+        <activity
+            android:name=".ui.mine.activity.ActivityGrzx"
+            android:screenOrientation="portrait" />
+        <!--设置-->
+        <activity
+            android:name=".ui.mine.activity.ActivitySetting"
+            android:screenOrientation="portrait" />
+        <!--绑定手机号-->
+        <activity
+            android:name=".ui.mine.activity.ActivityBdPhoneNum"
+            android:screenOrientation="portrait" />
+        <!--设置密码-->
+        <activity
+            android:name=".ui.mine.activity.ActivityUpDataPwd"
+            android:screenOrientation="portrait" />
+        <!--设置邮箱-->
+        <activity
+            android:name=".ui.mine.activity.ActivitySetEmail"
+            android:screenOrientation="portrait" />
+        <!--设置昵称-->
+        <activity
+            android:name=".ui.mine.activity.ActivitySetName"
+            android:screenOrientation="portrait" />
+        <!--个人简介-->
+        <activity
+            android:name=".ui.mine.activity.ActivityGrjj"
+            android:screenOrientation="portrait" />
+        <!--微信支付-->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--我的页面设置密码-->
+        <activity
+            android:name=".ui.mine.activity.ActivitySetPwd"
+            android:screenOrientation="portrait" />
+        <!--音频详情-->
+        <activity
+            android:name=".ui.home.activity.ActivityAudioDetails"
+            android:screenOrientation="portrait" />
+        <!--消息列表-->
+        <activity
+            android:name=".ui.mseeage.activity.EaseConversationListActivity"
+            android:screenOrientation="portrait" />
+        <!--聊天页面-->
+        <activity
+            android:name=".ui.mseeage.activity.ChatActivity"
+            android:screenOrientation="portrait" />
+        <!--律师详情-->
+        <activity
+            android:name=".ui.mseeage.activity.LvShiDetailsActivity"
+            android:screenOrientation="portrait" />
+        <!--律师大图-->
+        <activity
+            android:name=".ui.mseeage.activity.LvShiDaTuActivity"
+            android:screenOrientation="portrait" />
+        <!--我要投诉-->
+        <activity
+            android:name=".ui.mseeage.activity.ComplaintActivity"
+            android:screenOrientation="portrait" />
+        <!--发表评价-->
+        <activity
+            android:name=".ui.mseeage.activity.EvaluateActivity"
+            android:screenOrientation="portrait" />
+        <!--成功案例-->
+        <activity
+            android:name=".ui.mseeage.activity.SuccessAnLiActivity"
+            android:screenOrientation="portrait" />
+        <!--用户评价-->
+        <activity
+            android:name=".ui.mseeage.activity.UserEvaluateActivity"
+            android:screenOrientation="portrait" />
+        <!--Ta的回答-->
+        <activity
+            android:name=".ui.mseeage.activity.TaHuiDaActivity"
+            android:screenOrientation="portrait" />
+        <!--问答详情-->
+        <activity
+            android:name=".ui.mseeage.activity.HuiDaDetailsActivity"
+            android:screenOrientation="portrait" />
+        <!--评论详情-->
+        <activity
+            android:name=".ui.mseeage.activity.EvaluateDetailsActivity"
+            android:screenOrientation="portrait" />
+        <!--服务号消息详情-->
+        <activity
+            android:name=".ui.mseeage.activity.FwhMessageDetailsActivity"
+            android:screenOrientation="portrait" />
+        <!--查看大图-->
+        <activity
+            android:name=".ui.mseeage.activity.PhotoBrowserActivity"
+            android:screenOrientation="portrait" />
+        <!--悬赏支付-->
+        <activity
+            android:name=".ui.consult.activity.XuanShangPayActivity"
+            android:screenOrientation="portrait" />
+        <!--律师认证-->
+        <activity
+            android:name=".ui.mine.activity.ActivityLvShiRenZheng"
+            android:screenOrientation="portrait" />
+        <!--我的咨询-->
+        <activity
+            android:name=".ui.mine.activity.ActivityMineZiXun"
+            android:screenOrientation="portrait" />
+
+        <!--聊天室界面-->
+        <activity android:name=".ui.chatroom.activity.UserChatRoomActivity" />
+        <!--律师认证设置姓名-->
+        <activity
+
+            android:name=".ui.mine.activity.ActivityLvShiRenZhengSetName"
+            android:screenOrientation="portrait" />
+        <!--律师认证执业机构-->
+        <activity
+            android:name=".ui.mine.activity.ActivityZhiYeJiGou"
+            android:screenOrientation="portrait" />
+        <!--律师认证个人简介-->
+        <activity
+            android:name=".ui.mine.activity.ActivityLvShiJIanjie"
+            android:screenOrientation="portrait" />
+        <!--律师地址-->
+        <activity
+            android:name=".ui.mine.activity.ActivityLvShiAddress"
+            android:screenOrientation="portrait" />
+        <!--擅长领域-->
+        <activity
+            android:name=".ui.mine.activity.ActivityShangChangLingYu"
+            android:screenOrientation="portrait" />
+        <!--律师认证进度-->
+        <activity
+            android:name=".ui.mine.activity.ActivitySheHeJinDu"
+            android:screenOrientation="portrait" />
+        <!--律师端主页面-->
+        <activity
+            android:name=".ui.LvShiMainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <!--律师端设置界面-->
+        <activity
+
+            android:name=".ui.lawyer.setting.act.LawyerSettingActivity"
+            android:screenOrientation="portrait" />
+        <!--律师端问题详情-->
+        <activity
+            android:name=".ui.lvshiwenti.activity.WenTiXiangQIngAtivity"
+            android:screenOrientation="portrait" />
+        <!--交易记录-->
+        <activity
+            android:name=".ui.lawyer.transaction.act.TransactionActivity"
+            android:screenOrientation="portrait" />
+        <!--钱包-->
+        <activity
+            android:name=".ui.lawyer.wallet.act.WalletActivity"
+            android:screenOrientation="portrait" />
+        <!--律师须知-->
+        <activity
+            android:name=".ui.lvshiwode.activity.LawyerNoticeActivity"
+            android:screenOrientation="portrait" />
+        <!--律师认证管理-->
+        <activity
+            android:name=".ui.lvshiwode.activity.LawyerAuthenticationManagerActivity"
+            android:screenOrientation="portrait" />
+        <!--支付宝绑定界面-->
+        <activity
+            android:name=".ui.lawyer.bind.act.BindAliActivity"
+            android:screenOrientation="portrait" />
+        <!--        提现界面-->
+        <activity
+            android:name=".ui.lawyer.withdraw.act.WithdrawActivity"
+            android:screenOrientation="portrait" />
+        <!--        律师端聊天界面-->
+        <activity
+            android:name=".ui.lawyer.chat.act.LawyerChatRoomActivity"
+            android:screenOrientation="portrait" />
+        <!--隐私保障协议-->
+        <activity
+            android:name=".ui.lvshiwode.activity.PrivacyGuaranteeAgreementActivity"
+            android:screenOrientation="portrait" />
+        <!--律师认证信息-->
+        <activity
+            android:name=".ui.lvshiwode.activity.LawyerRenZhengInforActivity"
+            android:screenOrientation="portrait" />
+
+        <!--搜索界面-->
+        <activity android:name=".ui.search.ack.SearchActivity" />
+        <!--用发送红包-->
+        <activity android:name=".ui.redpackage.act.SendRedPackageActivity" />
+        <!--充值界面-->
+        <activity android:name=".ui.topup.act.TopUpActivity" />
+
+        <!--搜索Activity-->
+        <activity
+            android:name=".ui.users.act.SearchListActivity"
+            android:screenOrientation="portrait" />
+        <!--公告-->
+        <activity
+            android:name=".ui.users.act.AnnouncementActivity"
+            android:screenOrientation="portrait" />
+
+        <!--发布咨询支付界面-->
+        <activity android:name=".ui.pay.act.PayActivity" />
+        <!--公告详情-->
+        <activity
+            android:name=".ui.users.act.AnnouncementDetailsActivity"
+            android:screenOrientation="portrait" />
+        <!--我的咨询列表-->
+        <activity
+            android:name=".ui.users.act.MineConsultationListActivity"
+            android:screenOrientation="portrait" />
+        <!--置顶支付-->
+        <activity
+            android:name=".ui.users.act.TopPaymentActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我要悬赏-->
+        <activity android:name=".ui.pay.act.WantRewardActivity" />
+        <!--        咨询回复详情-->
+        <activity android:name=".ui.zixun.activity.AdvisoryReplyDetailActivity" />
+
+        <!--咨询详情-->
+        <activity
+            android:name=".ui.users.act.ConsultationDetailsActivity"
+            android:screenOrientation="portrait" />
+        <!--*用户红包详情-->
+        <activity android:name=".ui.redpackage.act.UserRedPackageActivity" />
+        <!--律师红包详情-->
+        <activity android:name=".ui.redpackage.act.LawyerRedPackageActivity" />
+
+        <!--        问题抢答界面-->
+        <activity android:name=".ui.lawyer.question.act.QuestionSettingActivity" />
+        <!--设置自动回复界面-->
+        <activity android:name=".ui.lawyer.question.act.SettingAutoAnswerActivity" />
+        <!--设置领域-->
+        <activity android:name=".ui.lawyer.question.act.SettingAreaActivity" />
+
+        <!--律师端咨询详情页-->
+        <activity
+            android:name=".ui.lvshiwenti.activity.LawyerCounselineDetailsActivity"
+            android:screenOrientation="portrait" />
+        <!--律师端咨询回复详情-->
+        <activity
+            android:name=".ui.lvshiwenti.activity.LawyerReplyDetailsActivity"
+            android:screenOrientation="portrait" />
+        <!--我要回答-->
+        <activity
+            android:name=".ui.lvshiwenti.activity.IWantToAnswerActivity"
+            android:screenOrientation="portrait" />
+        <!--Office预览界面-->
+        <activity android:name=".base.x5.OfficePreviewActivity" />
+        <!--律师他的咨询详情-->
+        <activity
+            android:name=".ui.users.act.ConsultationDetailsActivity2"
+            android:screenOrientation="portrait" />
+        <!--微信登录绑定手机号-->
+        <activity
+            android:name=".ui.login.activity.WechatBindingPhoneNumberActivity"
+            android:screenOrientation="portrait" />
+        <!--体现成功-->
+        <activity
+            android:name=".ui.lawyer.withdraw.act.WithdrawSuccessActivity"
+            android:screenOrientation="portrait" />
+        <!--添加常用语-->
+        <activity
+            android:name=".ui.lvshiwode.activity.CommonWordsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <!--管理常用语-->
+        <activity
+            android:name=".ui.lvshiwode.activity.ManagementCommonWordsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.lvshiwode.activity.ManagementCommonWordsActivity2"
+            android:screenOrientation="portrait" />
+        <!--编辑常用语-->
+        <activity
+            android:name=".ui.lvshiwode.activity.EditCommonWordsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <!--退款详情-->
+        <activity
+            android:name=".ui.users.act.RefundDetailsActivity"
+            android:screenOrientation="portrait" />
+        <!--我的退款-->
+        <activity
+            android:name=".ui.users.act.MyRefundActivity"
+            android:screenOrientation="portrait" />
+        <!--退款提交-->
+        <activity android:name=".ui.chatroom.activity.RefundCommitActivity" />
+
+        <!--音频分类-->
+        <activity android:name=".ui.audio.act.AudioClassificationActivity" />
+        <!--音频详情-->
+        <activity
+            android:name=".ui.audio.act.AudioDetailActivity"
+            android:launchMode="singleTask" />
+
+        <!--合同分类-->
+        <activity
+            android:name=".ui.contract.act.ContractClassificationActivity"
+            android:screenOrientation="portrait" />
+        <!--搜索合同-->
+        <activity
+            android:name=".ui.contract.act.SearchContractActivity"
+            android:screenOrientation="portrait" />
+        <!--合同列表-->
+
+        <activity
+            android:name=".ui.contract.act.ContractListActivity"
+            android:screenOrientation="portrait" />
+        <!--搜索音频-->
+        <activity
+            android:name=".ui.audio.act.SearchAudioActivity"
+            android:screenOrientation="portrait" />
+        <!--开通会员-->
+        <activity
+            android:name=".ui.contract.act.JoinMembershipActivity"
+            android:screenOrientation="portrait" />
+        <!--起诉状列表界面-->
+
+        <activity
+            android:name=".ui.complaint.act.ComplaintListActivity"
+            android:launchMode="singleTask" />
+        <!--起诉状分类-->
+        <activity android:name=".ui.complaint.act.ComplaintClassifyActivity" />
+
+        <!--法律知识-->
+        <activity
+            android:name=".ui.knowledge.act.LegalKnowledgeActivity"
+            android:screenOrientation="portrait" />
+        <!--知识详情-->
+        <activity
+            android:name=".ui.knowledge.act.KnowledgeDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.qisuzhuang.activity.ActivityZjqdAddListNew" />
+        <activity android:name=".ui.qisuzhuang.activity.ActivityZjqdXqNew" />
+
+        <activity android:name=".ui.mseeage.activity.UserEvaluateActivityNew" />
+
+        <!--用户主界面-->
+        <activity
+            android:name=".ui.UserMainActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ui.mseeage.activity.LawyerAnswerActivity" />
+        <activity
+            android:name=".ui.TipLoginActivity"
+            android:theme="@style/TokenInvalidDialog" />
+        <activity android:name=".ui.register.activity.PrivacyAgreementActivity" />
+
+        <!--service-->
+        <service
+            android:name=".services.JPushService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":push">
+            <intent-filter>
+                <action android:name="cn.jiguang.user.service.action" />
+            </intent-filter>
+        </service>
+        <!--单个音频播放-->
+        <service android:name=".services.SingleAudioPlayService" />
+
+        <receiver
+            android:name=".receiver.JPushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+                <category android:name="com.ytfu.yuntaifawu" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+</manifest>

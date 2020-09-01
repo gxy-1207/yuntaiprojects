@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent_half"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/ll_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingTop="18dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="18dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="常用语分类"
+            android:textColor="@color/textcolor_4D4D4D"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_advisory_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@mipmap/jianjiaohao_r"
+            android:drawablePadding="8dp"
+            android:hint="请选择分类"
+            android:textColorHint="@color/textcolor_4D4D4D"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+    <View
+        android:id="@+id/v1"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/ll_type"
+        android:background="@color/textcolor_f2"
+        />
+<EditText
+    android:id="@+id/ed_common_words"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/v1"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginTop="15dp"
+    android:background="@null"
+    android:hint="输入您的常用语"
+    android:textColorHint="@color/textColor_99"
+    android:textColor="@color/textColor_33"
+    android:textSize="15sp"
+    android:maxLength="50"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    />
+    <TextView
+        android:id="@+id/tv_ed_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="15dp"
+        android:text="0/50"
+        android:textSize="12sp"
+        android:textColor="@color/textColor_99"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

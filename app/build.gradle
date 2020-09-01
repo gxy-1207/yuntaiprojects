@@ -1,0 +1,299 @@
+apply plugin: 'com.android.application'
+//今日头条屏幕适配
+apply plugin: 'cn.leo.plugin.magic' //java 用这个
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+ext {
+    URL_CONFIG = [
+            DEBUG_API_URL  : '"http://ceshi.yuntaifawu.com/"',
+            RELEASE_API_URL: '"https://yuntaifawu.com/"'
+    ]
+
+    RSA_PUBLIC_KEY = '"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhHzdLKtwxUapTJOcCV4PwAtsC9A3ruL0OJMfIxxXsQpm1qH00J690LSCsrpbEVCvDz07tvU3zMUwB8L8eBi6pQpPHMBKNSR7H15cWWj5oT+fcLQMS5Nqw5vlwF0acqUoGLfap1MGl4TD9hV/PDlgtQt27njkvcm84+7iHDHZTqtSgHKFKDQBHpJRKh8HP1V9FbR6drmcv2zxsOKh8WzGFyiJPNG5R6+llojR925eqIcf9yn6gYqomYGTOdRM9jOKyPBfgk+8AJtzYe7seGbMbIFaRN9LispQUsBtIkmLplpchIHkxFjhErX8BIKaS9xseZJAvaH1NLIoEKTdKJk0iQIDAQAB"'
+
+}
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION as int
+    buildToolsVersion BUILD_TOOLS_VERSION
+    defaultConfig {
+        applicationId APPLICATION_ID
+        minSdkVersion MIN_SDK_VERSION as int
+        targetSdkVersion TARGET_SDK_VERSION as int
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
+        flavorDimensions "versionCode"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi-v7a", "armeabi", "x86"
+        }
+        resConfigs "zh"
+        //极光推送配置
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: APPLICATION_ID,
+                JPUSH_APPKEY : "0eaceeedbdb9596a5f8807a1", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+    }
+    //自定义包名输出格式
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def fileName = "ytflzx_v${defaultConfig.versionName}_${defaultConfig.versionCode}.apk"
+            outputFileName = fileName
+        }
+    }
+    signingConfigs {
+        def localStoreFile = file(rootDir.getAbsolutePath() +
+                File.separator +
+                "key" +
+                File.separator +
+                "ytswkeystore.jks")
+        release {
+            storeFile localStoreFile
+            storePassword 'yuntaifawu2019'
+            keyAlias 'ytfw'
+            keyPassword 'yuntaifawu2019'
+            setV1SigningEnabled(true)
+            setV2SigningEnabled(true)
+        }
+        debug {
+            storeFile localStoreFile
+            storePassword 'yuntaifawu2019'
+            keyAlias 'ytfw'
+            keyPassword 'yuntaifawu2019'
+            setV1SigningEnabled(true)
+            setV2SigningEnabled(true)
+        }
+    }
+    lintOptions {
+        abortOnError false //即使报错也不会停止打包
+        checkReleaseBuilds false //打包release版本的时候进行检测
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true //true开启混淆配置，false关闭
+            shrinkResources true //移除无用的资源文件
+            zipAlignEnabled true
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "IS_DEBUG", "false"
+            buildConfigField "String", "BASIC_URL", URL_CONFIG.RELEASE_API_URL
+            buildConfigField "String", "UUID", RSA_PUBLIC_KEY
+            manifestPlaceholders = [channel: "channel_00"]
+
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false //移除无用的资源文件
+            zipAlignEnabled false
+            debuggable true
+            jniDebuggable true
+            renderscriptDebuggable true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "IS_DEBUG", "true"
+            buildConfigField "String", "BASIC_URL", URL_CONFIG.DEBUG_API_URL
+            buildConfigField "String", "UUID", RSA_PUBLIC_KEY
+            manifestPlaceholders = [channel: "channel_debug"]
+        }
+        bate {
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+            shrinkResources true //移除无用的资源文件
+            zipAlignEnabled true
+            debuggable true
+            jniDebuggable true
+            renderscriptDebuggable true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "IS_DEBUG", "true"
+            buildConfigField "String", "BASIC_URL", URL_CONFIG.DEBUG_API_URL
+            buildConfigField "String", "UUID", RSA_PUBLIC_KEY
+            manifestPlaceholders = [channel: "channel_debug"]
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    //去除清单文件黄色警告
+    lintOptions {
+        disable 'GoogleAppIndexingWarning'
+    }
+    //use legacy for android > 6.0
+    useLibrary 'org.apache.http.legacy'
+}
+/*设置编译使用的编码*/
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+//UTC:世界统一时间，不属于任意时区beijing
+//def releaseTime() {
+//    return new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("UTC"))
+//}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":mvp_base")
+    implementation project(":mvp-annotation")
+    annotationProcessor project(":mvp-compiler")
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    //阴影
+    implementation 'androidx.cardview:cardview:1.0.0'
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    //OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.squareup.okio:okio:1.14.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    // RxJava RxAndroid
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    //butterKnife
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    // Log
+    implementation 'com.orhanobut:logger:2.2.0'
+    // EventBus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    // 刷新、加载
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'//没有使用特殊Header，可以不加这行
+    // 加载状态
+    implementation 'com.kingja.loadsir:loadsir:1.3.6'
+    // ViewPager指示器（TabLayout不满足需求是使用）
+    implementation 'com.github.hackware1993:magicindicator:1.5.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha05'
+    //glide
+//    implementation 'com.github.bumptech.glide:glide:4.11.0'
+//    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+//    implementation "com.github.bumptech.glide:okhttp3-integration:4.11.0"
+
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.11.0'
+    implementation 'com.github.bumptech.glide:annotations:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    annotationProcessor 'androidx.annotation:annotation:1.1.0'
+    //AutoDispose
+    implementation 'com.uber.autodispose:autodispose:1.3.0'
+    implementation 'com.uber.autodispose:autodispose-android-archcomponents:1.3.0'
+    //今日头条屏幕适配
+    implementation 'com.github.jarryleo:MagicScreenAdapter:v1.5'
+    /*图片轮播*/
+    implementation 'com.youth.banner:banner:1.4.10'
+    //日期选择
+    implementation 'com.haibin:calendarview:3.6.7'
+    implementation 'com.github.RDSunhy:android-word2html:1.2.0'
+
+    //api 'com.tencent.tbs.tbssdk:sdk:43697'
+//    implementation('com.jph.takephoto:takephoto_library:4.0.3') {
+//    implementation('org.devio.takephoto:takephoto_library:4.1.0') {
+//        exclude group: 'com.android.support'
+//    }
+    //takephoto
+    implementation 'org.devio.takephoto:takephoto_library:4.1.0'
+    implementation 'com.android.support:design:29.1.1'
+    implementation 'com.android.support:appcompat-v7:29.1.1'
+    //exoplayer音频播放
+    implementation 'com.google.android.exoplayer:exoplayer:2.9.0'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+//    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.31'
+    //屏幕适配
+    implementation 'me.jessyan:autosize:0.9.5'
+    // 支付宝 SDK AAR 包所需的配置
+    implementation(name: 'alipaySdk-15.6.8-20191021122514', ext: 'aar')
+    //微信
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.6.4'
+    //友盟统计
+    implementation files('libs/umeng-analytics-8.1.4.jar')
+    implementation files('libs/umeng-common-2.1.8.jar')
+    //腾讯bugly
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
+//    implementation "com.android.support:multidex:1.0.1" // 多dex配置
+    //注释掉原有bugly的仓库
+    //compile 'com.tencent.bugly:crashreport:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.3.4
+//    implementation 'com.tencent.bugly:crashreport_upgrade:1.3.5'
+    // 指定tinker依赖版本（注：应用升级1.3.5版本起，不再内置tinker）
+//    implementation 'com.tencent.tinker:tinker-android-lib:1.9.6'
+//    implementation 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
+    //snackbar
+    implementation 'com.android.support:design:29.3.0'
+    // 动态权限请求
+    api('com.yanzhenjie:permission:2.0.0-rc12') {
+        exclude group: 'androidx'
+    }
+    /*Parse存储，环信存储用户信息*/
+    implementation 'com.parse:parse-android:1.13.1'
+    //App版本更新
+    implementation 'com.teprinciple:updateapputilsX:2.1.0'
+//    implementation 'com.teprinciple:updateapputils:2.0.4'
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //列表回弹效果
+    implementation 'me.everything:overscroll-decor-android:1.0.4'
+    implementation project(path: ':easeui')
+    implementation project(path: ':hmspush')
+
+    implementation 'com.github.giswangsj:AndRatingBar:v1.0.1'
+    implementation 'com.bm.photoview:library:1.4.1'
+    //选择器
+    implementation 'com.contrarywind:Android-PickerView:4.1.9'
+    //流式布局
+    implementation 'com.hyman:flowlayout-lib:1.1.2'
+
+    // StatusBar Support
+    implementation('com.github.niorgai:StatusBarCompat:2.3.3', {
+        exclude group: 'androidx.appcompat:appcompat'
+        exclude group: 'com.google.android.material:material'
+    })
+    //弹窗
+    implementation 'com.lxj:xpopup:1.9.0'
+    //LitePal数据库
+    implementation 'org.litepal.guolindev:core:3.1.1'
+    //滚轮
+    implementation "com.wx.wheelview:wheelview:1.3.3"
+    //X5内核
+    implementation 'com.tencent.tbs.tbssdk:sdk:43903'
+
+
+    //极光推送
+    implementation 'cn.jiguang.sdk:jpush:3.6.6'  // 此处以JPush 3.6.6 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.3.8'  // 此处以JCore 2.3.8 版本为例。`
+
+
+    //图片选择器
+    implementation "com.github.YancyYe:GalleryPick:1.2.1"
+    implementation 'com.zhihu.android:matisse:0.5.3-beta3'
+
+    //图片上传压缩
+    implementation 'top.zibin:Luban-turbo:1.0.0'
+    implementation(name: 'msa_mdid_1.0.13', ext: 'aar')
+
+    implementation 'com.baidu.mobstat:mtj-sdk-circle:4.0.2.2'
+    implementation 'me.samlss:broccoli:1.0.0'
+
+    //运行时权限框架
+    implementation "pub.devrel:easypermissions:3.0.0"
+    implementation "com.github.lee.core:core-skeleton:1.0.1.snapshot"
+    implementation "com.github.lee.core:core-utils:1.0.1.snapshot"
+    implementation "com.pddstudio:encrypted-preferences:1.3.0"
+    implementation "com.j256.ormlite:ormlite-android:5.1"
+    implementation "com.j256.ormlite:ormlite-core:5.1"
+    /**协程的支持*/
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.1"
+
+}
+
+ 
+

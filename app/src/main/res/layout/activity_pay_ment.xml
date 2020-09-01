@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/textcolor_f2"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_price"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/transparent_half"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_top_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:text="置顶，让更多律师第一时间看到你的问题"
+            android:textColor="@color/textColor_44"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_top_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:text="5 元"
+            android:textColor="@color/textColor_ef6a6a"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/ll_price"
+        android:background="@color/transparent_half">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_top" />
+
+        <TextView
+            android:id="@+id/tv_top_priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="置顶后，您咨询的问题将优先展示在最靠前的位置"
+            android:textColor="@color/textColor_44"
+            android:textSize="14sp" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/transparent_half"
+        android:layout_alignParentBottom="true"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="支付金额:"
+                android:textColor="@color/textColor_44"
+                android:textSize="15sp"
+                android:layout_marginLeft="15dp"
+                />
+            <TextView
+                android:id="@+id/tv_pay_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 元"
+                android:textColor="@color/textColor_ef6a6a"
+                android:textSize="15sp"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+       <TextView
+           android:id="@+id/pay_now"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_marginRight="16dp"
+           android:textSize="15sp"
+           android:layout_centerVertical="true"
+           android:textColor="@color/transparent_half"
+           android:text="@string/textview_pay_now"
+           android:background="@drawable/btn_shape"
+           android:paddingTop="10dp"
+           android:paddingLeft="20dp"
+           android:paddingBottom="10dp"
+           android:paddingRight="20dp"
+           />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="4dp"
+    tools:context="com.ytfu.yuntaifawu.utils.dialog.PayDialog">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:text="@string/txt_choose_pay"
+                android:textColor="#333333"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_dialog_pay_close"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:src="@drawable/pay_guanbi" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#F2F2F2" />
+
+        <RadioGroup
+            android:id="@+id/rg_dialog_pay_method"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F2F2F2"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rb_dialog_pay_ali"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="0.5dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_white_to_gray"
+                android:button="@null"
+                android:drawableStart="@mipmap/icon_ali_pay_2"
+                android:drawableEnd="@drawable/selector_pay_select"
+                android:drawablePadding="10dp"
+                android:paddingStart="16dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="12dp"
+                android:text="@string/txt_pay_by_ali"
+                android:textColor="@color/selector_pay_self"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/rb_dialog_pay_wechat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/selector_white_to_gray"
+                android:button="@null"
+                android:drawableStart="@mipmap/icon_wechat_pay_2"
+                android:drawableEnd="@drawable/selector_pay_select"
+                android:drawablePadding="10dp"
+                android:paddingStart="16dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="12dp"
+                android:text="@string/txt_pay_by_wechat"
+                android:textColor="@color/selector_pay_self"
+                android:textSize="14sp" />
+
+
+            <RadioButton
+                android:id="@+id/rb_dialog_pay_self"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="0.5dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_white_to_gray"
+                android:button="@null"
+                android:drawableStart="@mipmap/icon_self_pay_2"
+                android:drawableEnd="@drawable/selector_pay_select"
+                android:drawablePadding="10dp"
+                android:paddingStart="16dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="12dp"
+                android:text="@string/txt_pay_by_balance"
+                android:textColor="@color/selector_pay_self"
+                android:textSize="14sp" />
+        </RadioGroup>
+
+        <View
+            android:id="@+id/v3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#F2F2F2" />
+
+        <TextView
+            android:id="@+id/tv_dialog_pay_commit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/btn_qd_shape"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/txt_pay_commit"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

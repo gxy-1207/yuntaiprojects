@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ytfu.yuntaifawu.ui.chatroom.activity.RefundCommitActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F2F2F2"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <EditText
+                    android:id="@+id/et_refund_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="start"
+                    android:hint="请输入退款原因"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine"
+                    android:lineSpacingExtra="4dp"
+                    android:lines="9"
+                    android:maxLength="200"
+                    android:maxLines="9"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/textcolor_4D4D4D"
+                    android:textColorHint="@color/textColor_66"
+                    android:textSize="12sp"
+                    tools:ignore="LabelFor" />
+
+                <TextView
+                    android:id="@+id/tv_refund_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="16dp"
+                    android:paddingBottom="15dp"
+                    android:text="0/200"
+                    android:textColor="@color/textColor_99"
+                    android:textSize="14sp" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_refund_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0.5dp"
+                android:background="@drawable/selector_white_to_gray"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <RelativeLayout
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/shape_upload_image">
+
+                    <ImageView
+                        android:layout_width="33dp"
+                        android:layout_height="26dp"
+                        android:layout_centerInParent="true"
+                        android:contentDescription="@null"
+                        android:src="@mipmap/icon_camera" />
+
+                    <ImageView
+                        android:id="@+id/iv_refund_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:contentDescription="@null"
+                        android:src="@mipmap/icon_camera"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="15dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请上传凭证"
+                    android:textColor="#ff666666"
+                    android:textSize="13sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="注：仅支持咨询费退款"
+                    android:textColor="#ff0000"
+                    android:layout_marginTop="4dp"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_refund_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="15dp"
+        app:cardBackgroundColor="#44A2F7">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:text="提交申请"
+            android:textColor="#ffffffff"
+            android:textSize="12sp" />
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

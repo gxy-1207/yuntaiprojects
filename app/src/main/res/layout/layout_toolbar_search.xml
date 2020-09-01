@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#43A1F7"
+    tools:menu="@menu/menu_search">
+
+    <EditText
+        android:id="@+id/et_search_input"
+        android:layout_width="match_parent"
+        android:imeOptions="actionSearch"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_search_edit"
+        android:hint="@string/hint_input_search_word"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingStart="12dp"
+        android:paddingTop="9.5dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="9.5dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textSize="12sp" />
+
+
+</androidx.appcompat.widget.Toolbar>

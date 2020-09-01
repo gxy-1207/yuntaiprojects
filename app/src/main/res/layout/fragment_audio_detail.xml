@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:scrollbars="none"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.ytfu.yuntaifawu.ui.audio.fragment.AudioDetailFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="#ff787878"
+            android:textSize="12sp"
+            tools:text="用非法手段形成的民间借贷，法院一般视情况来定这个协议是否有效力。一般呢，因非法活动引起的借贷纠纷，通常是不会认可但是承认之危，又或者是欺诈，则会视情况而定。" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

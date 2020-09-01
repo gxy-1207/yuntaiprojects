@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.ytfu.yuntaifawu.ui.lawyer.chat.adapter.LawyerChatRoomAdapter">
+    <!--    发送红包界面-->
+    <TextView
+        android:id="@+id/tv_chat_item_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="6dp"
+        android:textColor="#c0c0c0"
+        android:textSize="12sp"
+        android:visibility="gone"
+        tools:text="2020-12-12 23:23:59"
+        tools:visibility="visible" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_chat_item_red_package"
+            android:layout_width="220dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="6dp"
+            android:background="@mipmap/bg_send_red_package"
+            android:maxWidth="250dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="23.5dp"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_chat_item_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="请感受我真诚的谢意！"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="查看红包"
+                    android:textColor="#ffffffff"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_chat_item_pay_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="7dp"
+                android:text="红包"
+                android:textColor="#FF888888"
+                android:textSize="13sp" />
+
+        </RelativeLayout>
+
+        <!--        <TextView-->
+        <!--                android:id="@+id/tv_chat_item_content"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="6dp"-->
+        <!--                android:background="@drawable/ease_chatto_bg_normal"-->
+        <!--                android:gravity="center_vertical|start"-->
+        <!--                android:lineSpacingExtra="2dp"-->
+        <!--                android:maxWidth="255dp"-->
+        <!--                android:minHeight="38dp"-->
+        <!--                android:paddingStart="10dp"-->
+        <!--                android:paddingEnd="20dp"-->
+        <!--                android:textColor="#333333"-->
+        <!--                android:textSize="16sp"-->
+        <!--                tools:text="法国外籍军dddddddddddddddddddddddddddddd团法国外籍军团法国外籍军团法国外籍军团法国外籍军团法国外籍军团法国外籍军团法国外籍军团\n法国外籍军团\n法国外籍军团\n法国外籍军团\n法国外籍军团\n法国外籍军团" />-->
+
+        <ImageView
+            android:id="@+id/iv_chat_item_avatar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@null"
+            tools:src="@mipmap/logo" />
+    </LinearLayout>
+
+</LinearLayout>

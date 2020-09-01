@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F2F2"
+    android:orientation="vertical"
+    android:scrollbars="none"
+    tools:context="com.ytfu.yuntaifawu.ui.lawyer.question.act.SettingAreaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="25dp">
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/fl_area_recommend"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:max_select="-1" />
+
+
+        <CheckBox
+            android:id="@+id/cb_area_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/selector_white_to_gray"
+            android:button="@null"
+            android:drawableStart="@drawable/selector_pay_select"
+            android:drawablePadding="5dp"
+            android:text="@string/txt_select_all"
+            android:textColor="#FF666666"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+</ScrollView>

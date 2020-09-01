@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tl_personal_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/transparent_4c"
+        android:minHeight="?android:attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/tv_personal_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxEms="8"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="法国外籍军团" />
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/sv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/common_background_color">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/common_background_color"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/ll_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/logo" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="已为您成功匹配"
+                        android:textColor="#ff666666"
+                        android:textSize="13sp" />
+
+                    <com.ytfu.yuntaifawu.utils.view.NumberView
+                        android:id="@+id/tv_num1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:text="2234"
+                        android:textColor="#44A2F7"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="位律师"
+                        android:textColor="#ff666666"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingTop="18dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="18dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="问题类型"
+                        android:textColor="@color/textcolor_4D4D4D"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_advisory_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@mipmap/jianjiaohao_r"
+                        android:drawablePadding="8dp"
+                        android:hint="请选择问题类型"
+                        android:textColorHint="@color/textcolor_4D4D4D"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+
+                    <EditText
+                        android:id="@+id/et_advisory_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:gravity="start"
+                        android:importantForAutofill="no"
+                        android:inputType="textMultiLine"
+                        android:lineSpacingExtra="4dp"
+                        android:lines="9"
+                        android:maxLength="200"
+                        android:maxLines="9"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="10dp"
+                        android:textColor="@color/textcolor_4D4D4D"
+                        android:textColorHint="@color/textColor_66"
+                        android:textSize="12sp"
+                        tools:hint="请详细描述您的法律需求,以便得到律师的专业意见,请注意个人隐私,不要出现双方的真实姓名~"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_advisory_input_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="15dp"
+                        android:text="0/200"
+                        android:textColor="@color/textColor_99"
+                        android:textSize="14sp" />
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
+
+                    <TextView
+                        android:id="@+id/tv_advisory_tip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:textColor="#FFEF6A6A"
+                        android:textSize="12sp"
+                        tools:text="悬赏咨询,律师在线解答不用等，十秒为您解答" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="78dp"
+                        android:layout_marginTop="14dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_advisory_money_free"
+                            android:layout_width="0dp"
+                            android:layout_height="74dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="74dp"
+                                android:background="#D8DFE6"
+                                android:button="@android:color/transparent"
+                                android:checked="true"
+                                android:gravity="center"
+                                android:tag="0"
+                                android:text="免费\n咨询"
+                                android:textColor="@color/textColor_collect_audio_Select"
+                                android:textSize="10sp"
+                                tools:ignore="SmallSp" />
+
+                            <ImageView
+                                android:id="@+id/iv_advisory_money_free_icon"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentBottom="true"
+                                android:contentDescription="@null"
+                                android:src="@mipmap/icon_money_select"
+                                android:visibility="gone" />
+                        </RelativeLayout>
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/iv_advisory_moneys"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_weight="6"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:spanCount="3"
+                            tools:listitem="@layout/item_pay_money" />
+
+                    </LinearLayout>
+
+                    <!--                <LinearLayout-->
+                    <!--                    android:id="@+id/rg_advisory_money_group"-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="wrap_content"-->
+                    <!--                    android:layout_marginTop="14dp"-->
+                    <!--                    android:orientation="horizontal">-->
+
+                    <!--                    <CheckBox-->
+                    <!--                        android:id="@+id/cb_advisory_money_free"-->
+                    <!--                        android:layout_width="0dp"-->
+                    <!--                        android:layout_height="74dp"-->
+                    <!--                        android:layout_weight="1"-->
+                    <!--                        android:background="@drawable/tv_consulting_free_bg"-->
+                    <!--                        android:button="@android:color/transparent"-->
+                    <!--                        android:gravity="center"-->
+                    <!--                        android:paddingLeft="15dp"-->
+                    <!--                        android:paddingTop="8dp"-->
+                    <!--                        android:paddingRight="15dp"-->
+                    <!--                        android:paddingBottom="8dp"-->
+                    <!--                        android:tag="0"-->
+                    <!--                        android:text="免费咨询"-->
+                    <!--                        android:textColor="@color/textColor_collect_audio_Select"-->
+                    <!--                        android:textSize="10sp" />-->
+
+                    <!--                    <LinearLayout-->
+                    <!--                        android:layout_width="0dp"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginStart="4dp"-->
+                    <!--                        android:layout_weight="6"-->
+                    <!--                        android:orientation="vertical">-->
+
+                    <!--                        <RadioGroup-->
+                    <!--                            android:id="@+id/rg_advisory_first"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <RadioButton-->
+                    <!--                                android:id="@+id/rb_advisory_money_one"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="35dp"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:background="@drawable/tv_consulting_one_bg"-->
+                    <!--                                android:button="@android:color/transparent"-->
+                    <!--                                android:checked="true"-->
+                    <!--                                android:gravity="center"-->
+                    <!--                                android:paddingLeft="15dp"-->
+                    <!--                                android:paddingTop="8dp"-->
+                    <!--                                android:paddingRight="15dp"-->
+                    <!--                                android:paddingBottom="8dp"-->
+                    <!--                                android:tag="20"-->
+                    <!--                                android:text="悬赏20元"-->
+                    <!--                                android:textColor="#EF6A6A"-->
+                    <!--                                android:textSize="10sp" />-->
+
+                    <!--                            <RadioButton-->
+                    <!--                                android:id="@+id/rb_advisory_money_two"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="35dp"-->
+                    <!--                                android:layout_marginStart="4dp"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:background="@drawable/tv_consulting_two_bg"-->
+                    <!--                                android:button="@android:color/transparent"-->
+                    <!--                                android:gravity="center"-->
+                    <!--                                android:paddingLeft="15dp"-->
+                    <!--                                android:paddingTop="8dp"-->
+                    <!--                                android:paddingRight="15dp"-->
+                    <!--                                android:paddingBottom="8dp"-->
+                    <!--                                android:tag="30"-->
+                    <!--                                android:text="悬赏30元"-->
+                    <!--                                android:textColor="@color/white"-->
+                    <!--                                android:textSize="10sp" />-->
+
+                    <!--                            <RadioButton-->
+                    <!--                                android:id="@+id/rb_advisory_money_three"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="35dp"-->
+                    <!--                                android:layout_marginStart="4dp"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:background="@drawable/tv_consulting_one_bg"-->
+                    <!--                                android:button="@android:color/transparent"-->
+                    <!--                                android:gravity="center"-->
+                    <!--                                android:paddingLeft="15dp"-->
+                    <!--                                android:paddingTop="8dp"-->
+                    <!--                                android:paddingRight="15dp"-->
+                    <!--                                android:paddingBottom="8dp"-->
+                    <!--                                android:tag="50"-->
+                    <!--                                android:text="悬赏50元"-->
+                    <!--                                android:textColor="#EF6A6A"-->
+                    <!--                                android:textSize="10sp" />-->
+                    <!--                        </RadioGroup>-->
+
+
+                    <!--                        <RadioGroup-->
+                    <!--                            android:id="@+id/rg_advisory_second"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginTop="4dp"-->
+                    <!--                            android:orientation="horizontal">-->
+
+                    <!--                            <RadioButton-->
+                    <!--                                android:id="@+id/rb_advisory_money_four"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="35dp"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:background="@drawable/tv_consulting_two_bg"-->
+                    <!--                                android:button="@android:color/transparent"-->
+                    <!--                                android:gravity="center"-->
+                    <!--                                android:paddingLeft="15dp"-->
+                    <!--                                android:paddingTop="8dp"-->
+                    <!--                                android:paddingRight="15dp"-->
+                    <!--                                android:paddingBottom="8dp"-->
+                    <!--                                android:tag="20"-->
+                    <!--                                android:text="悬赏20元"-->
+                    <!--                                android:textColor="@color/white"-->
+                    <!--                                android:textSize="10sp" />-->
+
+                    <!--                            <RadioButton-->
+                    <!--                                android:id="@+id/rb_advisory_money_five"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="35dp"-->
+                    <!--                                android:layout_marginStart="4dp"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:background="@drawable/tv_consulting_one_bg"-->
+                    <!--                                android:button="@android:color/transparent"-->
+                    <!--                                android:gravity="center"-->
+                    <!--                                android:paddingLeft="15dp"-->
+                    <!--                                android:paddingTop="8dp"-->
+                    <!--                                android:paddingRight="15dp"-->
+                    <!--                                android:paddingBottom="8dp"-->
+                    <!--                                android:tag="30"-->
+                    <!--                                android:text="悬赏30元"-->
+                    <!--                                android:textColor="#EF6A6A"-->
+                    <!--                                android:textSize="10sp" />-->
+
+                    <!--                            <RadioButton-->
+                    <!--                                android:id="@+id/rb_advisory_money_six"-->
+                    <!--                                android:layout_width="0dp"-->
+                    <!--                                android:layout_height="35dp"-->
+                    <!--                                android:layout_marginStart="4dp"-->
+                    <!--                                android:layout_weight="1"-->
+                    <!--                                android:background="@drawable/tv_consulting_two_bg"-->
+                    <!--                                android:button="@android:color/transparent"-->
+                    <!--                                android:gravity="center"-->
+                    <!--                                android:paddingLeft="15dp"-->
+                    <!--                                android:paddingTop="8dp"-->
+                    <!--                                android:paddingRight="15dp"-->
+                    <!--                                android:paddingBottom="8dp"-->
+                    <!--                                android:tag="50"-->
+                    <!--                                android:text="悬赏50元"-->
+                    <!--                                android:textColor="@color/white"-->
+                    <!--                                android:textSize="10sp" />-->
+                    <!--                        </RadioGroup>-->
+
+                    <!--                    </LinearLayout>-->
+
+
+                    <!--                </LinearLayout>-->
+
+
+                    <TextView
+                        android:id="@+id/tv_advisory_tip2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:textColor="#FFEF6A6A"
+                        android:textSize="12sp"
+                        tools:text="悬赏咨询,律师在线解答不用等，十秒为您解答" />
+
+                    <EditText
+                        android:id="@+id/et_advisory_money"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/et_price_bg"
+                        android:ellipsize="end"
+                        android:hint="自定义悬赏金额"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingStart="4dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="4dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:singleLine="true"
+                        android:textColorHint="#FF999999"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_advisory_commit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="37dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="37dp"
+                    android:layout_marginBottom="23dp"
+                    android:background="@drawable/bg_update_btn"
+                    android:gravity="center"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:text="发布"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+        <ScrollView
+            android:id="@+id/sv_scan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="56dp"
+                    android:text="有2344位律师在等待匹配"
+                    android:textColor="#ff5c95ff"
+                    android:textSize="15sp" />
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="50dp">
+
+                    <ImageView
+                        android:id="@+id/iv_gif"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
+                        android:layout_marginStart="60dp"
+                        android:layout_marginEnd="60dp"
+                        android:contentDescription="@null"
+                        android:src="@mipmap/gif_scan" />
+
+                    <ImageView
+                        android:id="@+id/iv_avatar"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        android:contentDescription="@null"
+                        android:src="@drawable/logo" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="75dp"
+                    android:text="正在为您匹配律师"
+                    android:textColor="#ff333333"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="请稍候"
+                    android:textColor="#ff666666"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </RelativeLayout>
+</LinearLayout>

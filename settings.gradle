@@ -1,0 +1,6 @@
+include ':mvp_base'
+include ':mvp-compiler'
+include ':mvp-annotation'
+//include ':gallerypick'
+include ':app', ':easeui', ':hmspush'
+rootProject.name='yuntaifawu'

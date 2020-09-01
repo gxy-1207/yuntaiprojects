@@ -1,0 +1,16 @@
+apply plugin: 'java-library'
+/*设置编译使用的编码*/
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.google.auto.service:auto-service:1.0-rc7'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc7'
+    implementation 'com.squareup:javapoet:1.10.0'
+    implementation project(":mvp-annotation")
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

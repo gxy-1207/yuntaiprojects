@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F2F2"
+    android:orientation="vertical"
+    tools:context="com.ytfu.yuntaifawu.ui.lawyer.question.act.SettingAutoAnswerActivity">
+
+    <com.ytfu.yuntaifawu.utils.view.RatioViewGroup
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:rvg_ratio="1.5923566">
+
+        <EditText
+            android:id="@+id/et_setting_answer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:gravity="top"
+            android:textSize="14sp"
+            android:textColor="#FF666666"
+            android:hint="@string/hint_input_auto_answer"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:paddingStart="16dp"
+            android:paddingTop="23dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="23dp" />
+
+    </com.ytfu.yuntaifawu.utils.view.RatioViewGroup>
+
+
+</LinearLayout>

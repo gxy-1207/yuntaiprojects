@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_consulting">咨询</string>
+    <string name="home_courtassistant">开庭助手</string>
+    <string name="home_legaladviser">法律顾问</string>
+    <string name="home_recommended_lawyer">推荐律师</string>
+    <string name="textview_pay_now">立即支付</string>
+    <string name="textview_communicate_now">立即沟通</string>
+    <string name="textview_sticky_consultation">置顶咨询</string>
+    <string name="textview_additional_reward">追加悬赏</string>
+    <string name="textview_i_want_a_reward">我要悬赏</string>
+    <string name="textview_problem_solved">问题已解决？</string>
+    <string name="textview_unlock_now">立即获取</string>
+    <string name="textview_communicate_immediately">立即沟通</string>
+    <string name="textview_i_want_to_answer">我要回答</string>
+    <string name="textview_write_an_answer">写回答...</string>
+</resources>

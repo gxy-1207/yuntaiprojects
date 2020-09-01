@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F2F2"
+    android:scrollbars="none"
+    tools:context="com.ytfu.yuntaifawu.ui.lawyer.question.act.QuestionSettingActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context="com.ytfu.yuntaifawu.ui.lawyer.question.act.QuestionSettingActivity">
+
+
+        <CheckBox
+            android:id="@+id/cb_setting_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/selector_white_to_gray"
+            android:button="@android:color/transparent"
+            android:drawableEnd="@drawable/select_question_answer_checkbox"
+            android:paddingStart="16dp"
+            android:paddingTop="18dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="18dp"
+            android:text="@string/txt_question_answer"
+            android:textColor="#FF484848" />
+
+        <TextView
+            android:id="@+id/tv_setting_what"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/txt_what_is_answer"
+            android:textColor="#ff44a2f8"
+            android:textSize="12sp" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_setting_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/ll_setting_auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/selector_white_to_gray"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingTop="23dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="23dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_auto_answer"
+                    android:textColor="#ff484848"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_setting_auto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/icon_rg_jianjiaohao"
+                    android:drawablePadding="8dp"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:textColor="#ff888888"
+                    android:textSize="12sp"
+                    tools:text="您好，您的问题我已了解，请与..." />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="灰字为默认回复内容，点击可修改，不修改则为默认"
+                android:textColor="#ff888888"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:id="@+id/ll_setting_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/selector_white_to_gray"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingTop="23dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="23dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_areas_of_expertise"
+                    android:textColor="#ff484848"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_setting_area"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:drawableEnd="@drawable/icon_rg_jianjiaohao"
+                    android:drawablePadding="8dp"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:textColor="#ff888888"
+                    android:textSize="12sp"
+                    tools:text="您好，您的问题我已了解，请与..." />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="可多选，默认为全部。精准回复您擅长领域的问题"
+                android:textColor="#ff888888"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

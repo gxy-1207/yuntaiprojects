@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_header"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_header"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/iv_header"
+            android:textColor="@color/textColor_66"
+            android:textSize="14sp"
+            tools:text="name" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/iv_header"
+            android:textColor="@color/textColor_B9"
+            android:textSize="11sp"
+            tools:text="time" />
+
+        <TextView
+            android:id="@+id/tv_communicate_now"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="23dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/textview_communicate_now_shape"
+            android:drawableLeft="@mipmap/icon_my_inquiry3"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/textview_communicate_now"
+            android:textColor="@color/transparent_half"
+            android:textSize="11sp" />
+
+        <View
+            android:id="@+id/v1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/iv_header"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/textcolor_f2" />
+
+        <TextView
+            android:id="@+id/tv_connect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/v1"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="15dp"
+            android:ellipsize="end"
+            android:lineSpacingMultiplier="1.2"
+            android:maxEms="80"
+            android:paddingStart="16dp"
+            android:paddingEnd="22dp"
+            android:text="askadkjakdjdjkdjkadjasdjkaskadkjakdjdjkdjkadjasdjk\naskadkjakdjdjkdjkadjasdjkaskadkjakdjdjkdjkadjasdjk"
+            android:textColor="@color/textColor_66"
+            android:textSize="13sp" />
+    </RelativeLayout>
+</LinearLayout>

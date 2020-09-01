@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?><!--代理词页面布局-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/snackbar_ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/lin_dai_li_ci"
+        layout="@layout/incled_title_bai_center" />
+
+    <LinearLayout
+        android:id="@+id/ll_connect"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/lin_dai_li_ci"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/btn_dailici_buy"
+            android:layout_below="@id/lin_dai_li_ci"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="18dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="前言"
+                    android:textColor="#E13B38"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_dlc_qy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="18dp"
+                    android:lineSpacingMultiplier="1"
+                    android:text=""
+                    android:textColor="#E13B38"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_dlc_wenhou"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="18dp"
+                    android:lineSpacingMultiplier="1"
+                    android:text=""
+                    android:textColor="#E13B38"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#F5F5F5" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycle_dlc"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:overScrollMode="never"
+                        android:scrollbars="none" />
+
+                    <ImageView
+                        android:id="@+id/iv_weifufei"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="30dp"
+                        android:src="@drawable/weifufei_icon"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/btn_dailici_buy"
+            android:layout_width="345dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/btn_dlc_selector"
+            android:padding="15dp"
+            android:text="生成代理词"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btn_dailici_fasong"
+            android:layout_width="345dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/btn_goumai"
+            android:padding="15dp"
+            android:text="发送到邮箱"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/lin_dai_li_ci"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@color/transparent_half">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_empty" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/fine_no_data"
+            android:textColor="@color/textColor_99"
+            android:textSize="14sp" />
+    </LinearLayout>
+</RelativeLayout>

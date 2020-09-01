@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ytfu.yuntaifawu.ui.lawyer.chat.act.LawyerChatRoomActivity">
+
+    <include layout="@layout/layout_toolbar_center_title" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_room_complaint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/icon_complaint_lawyer_chat_top"
+            android:drawablePadding="1dp"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="起诉状"
+            android:textColor="#727272"
+            android:textSize="11sp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#f5f5f5" />
+
+        <TextView
+            android:id="@+id/tv_room_advisory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/chat_zixun_icon"
+            android:drawablePadding="1dp"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="他的咨询"
+            android:textColor="#727272"
+            android:textSize="11sp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#f5f5f5" />
+
+        <TextView
+            android:id="@+id/tv_room_fee"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/chat_hongbao_icon"
+            android:drawablePadding="1dp"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="收服务费"
+            android:textColor="#727272"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_room_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#F2F2F2">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_room_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_chat_receive_fee" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:minHeight="50dp"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <TextView
+                android:id="@+id/tv_common_terms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_btn_withdraw"
+                android:paddingStart="12dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="4dp"
+                android:text="@string/txt_common_terms"
+                android:textColor="@android:color/white" />
+
+            <EditText
+                android:id="@+id/et_room_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:hint="@string/hint_input_send_message"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:lineSpacingMultiplier="1.2"
+                android:maxLines="3"
+                android:textColorHint="#FF44A2F7"
+                android:textSize="14sp"
+                tools:text="asihdanhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwudnhdwud\nhdwud\nqsdhud\ndhioqwid\nasihda\nhdwud\nqsdhud\ndhioqwid\n" />
+
+            <TextView
+                android:id="@+id/tv_room_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/shape_btn_withdraw"
+                android:paddingStart="12dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="4dp"
+                android:text="@string/txt_send_message"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="12dp"
+            android:background="#FFE5E5E5" />
+
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/mi_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:background="#F00"
+            tools:layout_height="50dp" />
+
+        <LinearLayout
+            android:id="@+id/rv_common_words_root"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:visibility="gone"
+                    android:background="#FFE5E5E5" />
+
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/vp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    tools:background="#F00" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_add"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_white_to_gray"
+                        android:paddingTop="17dp"
+                        android:paddingBottom="17dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="@android:color/transparent"
+                            android:drawableStart="@mipmap/icon_common_words_add"
+                            android:drawablePadding="5dp"
+                            android:text="添加"
+                            android:textColor="#ff333333"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginBottom="14dp"
+                        android:background="#FFD9D9D9" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_manager"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_white_to_gray"
+                        android:paddingTop="17dp"
+                        android:paddingBottom="17dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="@android:color/transparent"
+                            android:drawableStart="@mipmap/icon_common_words_manage"
+                            android:drawablePadding="5dp"
+                            android:text="管理"
+                            android:textColor="#ff333333"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

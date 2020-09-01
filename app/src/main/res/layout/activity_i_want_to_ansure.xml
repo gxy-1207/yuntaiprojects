@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/textcolor_f2"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent_half">
+
+        <ImageView
+            android:id="@+id/iv_header"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/logo" />
+
+        <LinearLayout
+            android:id="@+id/ll_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="24dp"
+            android:layout_toRightOf="@+id/iv_header"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="name"
+                android:textColor="@color/textColor_66"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/textview_wenti_xq_shape"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="type"
+                android:textColor="@color/textColor_e13b38"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_name"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/iv_header"
+            android:text="page"
+            android:textColor="@color/textColor_B9"
+            android:textSize="11sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/iv_urgent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@mipmap/icon_urgent" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="悬赏5元"
+                android:textColor="@color/textColor_e13b38"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_header"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="fsfsjkfjksfnjksn"
+            android:textColor="@color/textColor_66"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="255dp"
+        android:layout_below="@+id/rl"
+        android:layout_marginTop="20dp"
+        android:background="@color/transparent_half"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:text="@string/textview_write_an_answer"
+                android:textColor="@color/textColor_4c98ee"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:text="0/300"
+                android:textColor="@color/textview_88"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="start"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:lineSpacingExtra="4dp"
+            android:maxLength="300"
+            android:paddingLeft="15dp"
+            android:paddingTop="14dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/textcolor_4D4D4D"
+            android:textColorHint="@color/textview_88"
+            android:textSize="12sp"
+            android:hint="认真解答，将增加获得咨询费用的几率～
+请勿在回复中出现电话、QQ、微信等联系方式，否则一律删除！"
+            tools:ignore="LabelFor" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="提交"
+        android:textColor="@color/transparent_half"
+        android:textSize="13sp"
+        android:background="@drawable/btn_shape"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:layout_marginLeft="37dp"
+        android:layout_marginRight="37dp"
+        android:paddingTop="13dp"
+        android:paddingBottom="13dp"
+        />
+</RelativeLayout>
