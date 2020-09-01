@@ -8,6 +8,11 @@ import com.core.ui.ext.getBundleValue
 import com.github.lee.annotation.InjectLayout
 import com.ytfu.yuntaifawu.R
 
+/**
+ * @Author:         gxy
+ * @CreateDate:     2020/9/1
+ * @Description:     webview公共页
+ */
 @InjectLayout(toolbarLayoutId = R.layout.layout_toolbar_center_title)
 class PrivacyAgreementActivity : BaseWebActivity() {
 
