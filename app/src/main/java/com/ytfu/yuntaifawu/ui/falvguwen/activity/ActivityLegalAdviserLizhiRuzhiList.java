@@ -87,6 +87,15 @@ public class ActivityLegalAdviserLizhiRuzhiList
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("uid", uid);
+        map.put("type", id);
+        getPresenter().getFlgwLieBiao(map);
+    }
+
+    @Override
     protected void initData() {
         rlAdaper = new LegalAdviserRlAdaper(this);
         recycleFlgwList.setAdapter(rlAdaper);

@@ -311,7 +311,9 @@ public class ActivityContractDetails
     }
 
     @Override
-    public void onContractDetailFiled() {}
+    public void onContractDetailFiled() {
+        hideWaitingDialog();
+    }
 
     @Override
     public void onShouCangSuccess(AudioShouCangBean shouCangBean) {

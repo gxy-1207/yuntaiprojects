@@ -37,20 +37,22 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-/**
- * @Auther gxy
- * @Date 2019/11/21
- * @Des 法律顾问在职Activity
- */
-public class ActivityLegalAdviserZaiZhiList extends BaseActivity<ILegalAdviserClassifyView, LegalAdviserSecondClassifyPresenter> implements ILegalAdviserClassifyView {
+/** @Auther gxy @Date 2019/11/21 @Des 法律顾问在职Activity */
+public class ActivityLegalAdviserZaiZhiList
+        extends BaseActivity<ILegalAdviserClassifyView, LegalAdviserSecondClassifyPresenter>
+        implements ILegalAdviserClassifyView {
     @BindView(R.id.iv_fanhui)
     ImageView ivFanhui;
+
     @BindView(R.id.tv_top_title)
     TextView tvTopTitle;
+
     @BindView(R.id.magic_indicator1)
     MagicIndicator magicIndicator1;
+
     @BindView(R.id.view_pager)
     ViewPager viewPager;
+
     private List<Fragment> fragmentList = new ArrayList<>();
     private String id;
     private String label;
@@ -71,14 +73,14 @@ public class ActivityLegalAdviserZaiZhiList extends BaseActivity<ILegalAdviserCl
         super.init();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = getWindow();
-//      window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            //      window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.transparent_half));
         }
     }
 
     @Override
     protected void initView() {
-//        hideLoading();
+        //        hideLoading();
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         label = intent.getStringExtra("label");
@@ -89,6 +91,12 @@ public class ActivityLegalAdviserZaiZhiList extends BaseActivity<ILegalAdviserCl
     protected void onMyReload(View v) {
         super.onMyReload(v);
         showLoading();
+        getPresenter().getFlgwSecond(id);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getPresenter().getFlgwSecond(id);
     }
 
@@ -115,15 +123,11 @@ public class ActivityLegalAdviserZaiZhiList extends BaseActivity<ILegalAdviserCl
             } else {
                 ToastUtil.showToast(secondFenLeiBean.getMsg());
             }
-
         }
     }
 
     @Override
-    public void onFiled(String error) {
-
-    }
-
+    public void onFiled(String error) {}
 
     private void initViewPager() {
         fragmentList.clear();
@@ -131,25 +135,28 @@ public class ActivityLegalAdviserZaiZhiList extends BaseActivity<ILegalAdviserCl
             FragmentLegalAdviserList fragmentFaLvGuWenZaiZhiList = new FragmentLegalAdviserList();
             Bundle contentBundle = new Bundle();
             contentBundle.putInt("indicator_tag", i);
-//            if (i > 0) {
+            //            if (i > 0) {
             contentBundle.putString("id", list.get(i).getId());
-//            }
+            //            }
             fragmentFaLvGuWenZaiZhiList.setArguments(contentBundle);
             fragmentList.add(fragmentFaLvGuWenZaiZhiList);
         }
         if (getFragmentManager() != null) {
-//            IndicatorVpAdapter adapter = new IndicatorVpAdapter(getFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragmentList, indicatorList);
-            viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
-                @Override
-                public Fragment getItem(int position) {
-                    return fragmentList.get(position);
-                }
+            //            IndicatorVpAdapter adapter = new IndicatorVpAdapter(getFragmentManager(),
+            // FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragmentList,
+            // indicatorList);
+            viewPager.setAdapter(
+                    new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+                        @Override
+                        public Fragment getItem(int position) {
+                            return fragmentList.get(position);
+                        }
 
-                @Override
-                public int getCount() {
-                    return list.size();
-                }
-            });
+                        @Override
+                        public int getCount() {
+                            return list.size();
+                        }
+                    });
             ViewPagerHelper.bind(magicIndicator1, viewPager);
         }
     }
@@ -157,64 +164,89 @@ public class ActivityLegalAdviserZaiZhiList extends BaseActivity<ILegalAdviserCl
     private void initMagicIndicator() {
         CommonNavigator commonNavigator = new CommonNavigator(this);
         commonNavigator.setAdjustMode(true);
-        commonNavigator.setAdapter(new CommonNavigatorAdapter() {
-            @Override
-            public int getCount() {
-                return list == null ? 0 : list.size();
-            }
-
-            @Override
-            public IPagerTitleView getTitleView(Context context, int i) {
-//                CustomPagerTitleView customPagerTitleView = new CustomPagerTitleView(context, i, list.size());
-                CommonPagerTitleView commonPagerTitleView = new CommonPagerTitleView(context);
-                View customLayout = LayoutInflater.from(context).inflate(R.layout.simple_pager_title_layout, null);
-                ImageView imageView = customLayout.findViewById(R.id.iv_title);
-                TextView textView = customLayout.findViewById(R.id.tv_title);
-                GlideManager.loadImageByUrl(ActivityLegalAdviserZaiZhiList.this, list.get(i).getImg(), imageView);
-//                imageView.setImageResource(R.drawable.helper);
-                textView.setText(list.get(i).getLabel());
-                commonPagerTitleView.setContentView(customLayout);
-                commonPagerTitleView.setOnPagerTitleChangeListener(new CommonPagerTitleView.OnPagerTitleChangeListener() {
+        commonNavigator.setAdapter(
+                new CommonNavigatorAdapter() {
                     @Override
-                    public void onSelected(int i, int i1) {
-                        textView.setTextColor(getResources().getColor(R.color.textColor_collect_audio_Select));
-                        GlideManager.loadImageByUrl(ActivityLegalAdviserZaiZhiList.this, list.get(i).getNav_img(), imageView);
+                    public int getCount() {
+                        return list == null ? 0 : list.size();
                     }
 
                     @Override
-                    public void onDeselected(int i, int i1) {
-                        textView.setTextColor(getResources().getColor(R.color.textColor_99));
-                        GlideManager.loadImageByUrl(ActivityLegalAdviserZaiZhiList.this, list.get(i).getImg(), imageView);
+                    public IPagerTitleView getTitleView(Context context, int i) {
+                        //                CustomPagerTitleView customPagerTitleView = new
+                        // CustomPagerTitleView(context, i, list.size());
+                        CommonPagerTitleView commonPagerTitleView =
+                                new CommonPagerTitleView(context);
+                        View customLayout =
+                                LayoutInflater.from(context)
+                                        .inflate(R.layout.simple_pager_title_layout, null);
+                        ImageView imageView = customLayout.findViewById(R.id.iv_title);
+                        TextView textView = customLayout.findViewById(R.id.tv_title);
+                        GlideManager.loadImageByUrl(
+                                ActivityLegalAdviserZaiZhiList.this,
+                                list.get(i).getImg(),
+                                imageView);
+                        //                imageView.setImageResource(R.drawable.helper);
+                        textView.setText(list.get(i).getLabel());
+                        commonPagerTitleView.setContentView(customLayout);
+                        commonPagerTitleView.setOnPagerTitleChangeListener(
+                                new CommonPagerTitleView.OnPagerTitleChangeListener() {
+                                    @Override
+                                    public void onSelected(int i, int i1) {
+                                        textView.setTextColor(
+                                                getResources()
+                                                        .getColor(
+                                                                R.color
+                                                                        .textColor_collect_audio_Select));
+                                        GlideManager.loadImageByUrl(
+                                                ActivityLegalAdviserZaiZhiList.this,
+                                                list.get(i).getNav_img(),
+                                                imageView);
+                                    }
+
+                                    @Override
+                                    public void onDeselected(int i, int i1) {
+                                        textView.setTextColor(
+                                                getResources().getColor(R.color.textColor_99));
+                                        GlideManager.loadImageByUrl(
+                                                ActivityLegalAdviserZaiZhiList.this,
+                                                list.get(i).getImg(),
+                                                imageView);
+                                    }
+
+                                    @Override
+                                    public void onLeave(int i, int i1, float v, boolean b) {
+                                        //                        textView.setScaleX(0.8f + (0.5f -
+                                        // 0.8f) * v);
+                                        //                        textView.setScaleY(0.8f + (0.5f -
+                                        // 0.8f) * v);
+                                        textView.setTextSize(10);
+                                    }
+
+                                    @Override
+                                    public void onEnter(int i, int i1, float v, boolean b) {
+                                        //                        textView.setScaleX(0.5f + (0.8f -
+                                        // 0.5f) * v);
+                                        //                        textView.setScaleY(0.5f + (0.8f -
+                                        // 0.5f) * v);
+                                        textView.setTextSize(13);
+                                    }
+                                });
+                        commonPagerTitleView.setOnClickListener(
+                                new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        viewPager.setCurrentItem(i);
+                                    }
+                                });
+                        return commonPagerTitleView;
                     }
 
                     @Override
-                    public void onLeave(int i, int i1, float v, boolean b) {
-//                        textView.setScaleX(0.8f + (0.5f - 0.8f) * v);
-//                        textView.setScaleY(0.8f + (0.5f - 0.8f) * v);
-                        textView.setTextSize(10);
-                    }
-
-                    @Override
-                    public void onEnter(int i, int i1, float v, boolean b) {
-//                        textView.setScaleX(0.5f + (0.8f - 0.5f) * v);
-//                        textView.setScaleY(0.5f + (0.8f - 0.5f) * v);
-                        textView.setTextSize(13);
+                    public IPagerIndicator getIndicator(Context context) {
+                        return null;
                     }
                 });
-                commonPagerTitleView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        viewPager.setCurrentItem(i);
-                    }
-                });
-                return commonPagerTitleView;
-            }
-
-            @Override
-            public IPagerIndicator getIndicator(Context context) {
-                return null;
-            }
-        });
         magicIndicator1.setNavigator(commonNavigator);
     }
 }
