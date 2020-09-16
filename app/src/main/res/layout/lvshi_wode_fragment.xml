@@ -174,24 +174,45 @@
                     android:text="@string/txt_question_answer"
                     android:textColor="#ff484848"
                     android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_lawyer_post"
+                <RelativeLayout
+                    android:id="@+id/rl_lawyer_post"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop=".5dp"
                     android:background="@drawable/selector_white_to_gray"
-                    android:drawableStart="@mipmap/icon_announcement"
-                    android:drawableEnd="@drawable/icon_rg_jianjiaohao"
-                    android:drawablePadding="15dp"
-                    android:paddingStart="16dp"
-                    android:paddingTop="24dp"
-                    android:paddingEnd="22dp"
-                    android:paddingBottom="24dp"
-                    android:text="@string/txt_announcement"
-                    android:textColor="#ff484848"
-                    android:textSize="14sp" />
-
+                    >
+                    <TextView
+                        android:id="@+id/tv_lawyer_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop=".5dp"
+                        android:drawableStart="@mipmap/icon_announcement"
+                        android:drawablePadding="15dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="24dp"
+                        android:paddingEnd="2dp"
+                        android:paddingBottom="24dp"
+                        android:text="@string/txt_announcement"
+                        android:textColor="#ff484848"
+                        android:textSize="14sp" />
+                    <ImageView
+                        android:id="@+id/red_dot"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_toRightOf="@+id/tv_lawyer_post"
+                        android:src="@mipmap/iv_red_dot"
+                        android:layout_marginTop="20dp"
+android:visibility="gone"
+                        />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_rg_jianjiaohao"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="22dp"
+                        />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/lvshi_xuzhi"

@@ -147,7 +147,7 @@ public class UserPersonalFragment extends BaseFragment<UserPersonalView, UserPer
                         });
 
         // 公告
-        rootView.findViewById(R.id.tv_personal_announcement)
+        rootView.findViewById(R.id.rl_personal_announcement)
                 .setOnClickListener(v -> AnnouncementActivity.start(mContext));
         // 设置
         rootView.findViewById(R.id.tv_personal_setting)

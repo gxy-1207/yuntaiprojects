@@ -34,7 +34,16 @@
         android:text="2020云台法律咨询端午节放假通知"
         android:textColor="@color/textColor_48"
         android:textSize="14sp" />
-
+<ImageView
+    android:id="@+id/red_dot"
+    android:layout_width="8dp"
+    android:layout_height="8dp"
+    android:src="@mipmap/iv_red_dot"
+    android:layout_toRightOf="@+id/tv_title"
+    android:layout_marginTop="13dp"
+    android:layout_marginStart="5dp"
+    android:visibility="gone"
+    />
     <TextView
         android:id="@+id/tv_time"
         android:layout_width="wrap_content"

@@ -108,7 +108,7 @@ public class LvShiWodeFragment extends BaseFragment<LawyerPersonalView, LawyerPe
                             getPresenter().getQuestionInfo(lawyerId);
                         });
         // 公告
-        rootView.findViewById(R.id.tv_lawyer_post)
+        rootView.findViewById(R.id.rl_lawyer_post)
                 .setOnClickListener(
                         v -> {
                             AnnouncementActivity.start(mContext);

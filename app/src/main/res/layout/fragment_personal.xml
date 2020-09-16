@@ -288,22 +288,44 @@
                 app:cardBackgroundColor="@android:color/white"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="0dp">
+<RelativeLayout
+    android:id="@+id/rl_personal_announcement"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_white_to_gray"
+    >
+    <TextView
+        android:id="@+id/tv_personal_announcement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@mipmap/icon_announcement"
+        android:drawablePadding="17dp"
+        android:paddingStart="12dp"
+        android:paddingTop="23dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="23dp"
+        android:text="@string/txt_announcement"
+        android:textColor="#ff484848"
+        android:textSize="14sp" />
+    <ImageView
+        android:id="@+id/red_dot"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_toRightOf="@+id/tv_personal_announcement"
+        android:src="@mipmap/iv_red_dot"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_rg_jianjiaohao"
+        android:layout_alignParentEnd="true"
+       android:layout_centerVertical="true"
+        android:layout_marginEnd="16dp"
+        />
+</RelativeLayout>
 
-                <TextView
-                    android:id="@+id/tv_personal_announcement"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_white_to_gray"
-                    android:drawableStart="@mipmap/icon_announcement"
-                    android:drawableEnd="@drawable/icon_rg_jianjiaohao"
-                    android:drawablePadding="17dp"
-                    android:paddingStart="12dp"
-                    android:paddingTop="23dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="23dp"
-                    android:text="@string/txt_announcement"
-                    android:textColor="#ff484848"
-                    android:textSize="14sp" />
 
             </androidx.cardview.widget.CardView>
 
