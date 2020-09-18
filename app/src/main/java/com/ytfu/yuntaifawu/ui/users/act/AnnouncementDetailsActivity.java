@@ -32,7 +32,6 @@ public class AnnouncementDetailsActivity extends BaseActivity {
         starter.putExtras(bundle);
         context.startActivity(starter);
     }
-
     public static void start(Context context, String title, String url) {
         Bundle bundle = new Bundle();
         bundle.putString(KEY_TITLE, title);

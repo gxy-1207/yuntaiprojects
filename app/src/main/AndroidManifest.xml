@@ -673,6 +673,7 @@
             android:name=".ui.TipLoginActivity"
             android:theme="@style/TokenInvalidDialog" />
         <activity android:name=".ui.register.activity.PrivacyAgreementActivity" />
+        <activity android:name=".ui.users.act.SkillsActivityList" />
 
         <!--service-->
         <service

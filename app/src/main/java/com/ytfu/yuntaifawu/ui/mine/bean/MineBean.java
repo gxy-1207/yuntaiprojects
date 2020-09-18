@@ -1,23 +1,14 @@
 package com.ytfu.yuntaifawu.ui.mine.bean;
-/**
-*
-*  @Auther  gxy
-*
-*  @Date    2019/11/17
-*
-*  @Des 我的首页
-*
-*/
+/** @Auther gxy @Date 2019/11/17 @Des 我的首页 */
 public class MineBean {
 
     /**
-     * find : {"user_nicename":"17084548998","avatar":"https://yuntaifawu.com/data/upload/avatar/2019-12-25//15772413901265.jpg","qsz_count":"9","audio_count":"128","contract_count":"65"}
-     * status : 200
-     * referer :
-     * state : success
+     * find :
+     * {"user_nicename":"17084548998","avatar":"https://yuntaifawu.com/data/upload/avatar/2019-12-25//15772413901265.jpg","qsz_count":"9","audio_count":"128","contract_count":"65"}
+     * status : 200 referer : state : success
      */
-
     private FindBean find;
+
     private int status;
     private String referer;
     private String state;
@@ -56,14 +47,12 @@ public class MineBean {
 
     public static class FindBean {
         /**
-         * user_nicename : 17084548998
-         * avatar : https://yuntaifawu.com/data/upload/avatar/2019-12-25//15772413901265.jpg
-         * qsz_count : 9
-         * audio_count : 128
-         * contract_count : 65
+         * user_nicename : 17084548998 avatar :
+         * https://yuntaifawu.com/data/upload/avatar/2019-12-25//15772413901265.jpg qsz_count : 9
+         * audio_count : 128 contract_count : 65
          */
-
         private String user_login;
+
         private String avatar;
         private String qsz_count;
         private String audio_count;
@@ -72,6 +61,24 @@ public class MineBean {
         private String shenfen;
         private String income;
         private int alipay;
+        private int rand_type; // 1 为未读
+        private int jiqiao_type; // 1为未读
+
+        public int getJiqiao_type() {
+            return jiqiao_type;
+        }
+
+        public void setJiqiao_type(int jiqiao_type) {
+            this.jiqiao_type = jiqiao_type;
+        }
+
+        public int getRand_type() {
+            return rand_type;
+        }
+
+        public void setRand_type(int rand_type) {
+            this.rand_type = rand_type;
+        }
 
         public int getAlipay() {
             return alipay;
