@@ -686,6 +686,10 @@ public static final int *;
 -keep class * extends com.core.ui.mvp.BasicMVPPresenter
 -keep class * extends com.core.ui.mvp.BasicMVPView
 -keep class * implements com.core.ui.mvp.BasicMVPView
+#七牛
+-keep class com.qiniu.**{*;}
+-keep class com.qiniu.**{public <init>();}
+-ignorewarnings
 
 
 

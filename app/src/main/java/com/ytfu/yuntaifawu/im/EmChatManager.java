@@ -73,9 +73,13 @@ public class EmChatManager {
                 EMClient.getInstance().chatManager().getConversation(conversationId);
         conversation.removeMessage(messageId);
     }
-
+    // ===Desc:发送文本=================================================================
     public EMMessage createTxtMessage(String toUserId, String content) {
         return EMMessage.createTxtSendMessage(content, toUserId);
+    }
+    // ===Desc:发送图片=================================================================
+    public EMMessage createImgMessage(String imageUri, Boolean aBoolean, String toUserId) {
+        return EMMessage.createImageSendMessage(imageUri, aBoolean, toUserId);
     }
 
     public void sendTxt(EMMessage message) {}

@@ -28,6 +28,8 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".app.App"
@@ -149,7 +151,6 @@
             </intent-filter>
         </activity>
         <activity
-
             android:name=".ui.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
@@ -674,7 +675,12 @@
             android:theme="@style/TokenInvalidDialog" />
         <activity android:name=".ui.register.activity.PrivacyAgreementActivity" />
         <activity android:name=".ui.users.act.SkillsActivityList" />
-
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.lawyer.chat.act.ChatBigImageActivity"
+            android:theme="@style/chatBigImgThem" />
         <!--service-->
         <service
             android:name=".services.JPushService"

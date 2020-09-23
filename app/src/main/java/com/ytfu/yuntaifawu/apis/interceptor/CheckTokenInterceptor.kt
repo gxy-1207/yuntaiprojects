@@ -14,7 +14,7 @@ class CheckTokenInterceptor : Interceptor {
         val originalRequest = chain.request()
         val originalResponse = chain.proceed(originalRequest)
 
-        val responseBody = originalResponse.body() ?: return originalResponse
+        val responseBody = originalResponse.body ?: return originalResponse
 
         val source = responseBody.source()
         source.request(Long.MAX_VALUE)

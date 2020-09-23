@@ -144,8 +144,19 @@
                 android:paddingEnd="12dp"
                 android:paddingBottom="4dp"
                 android:text="@string/txt_send_message"
+                android:visibility="gone"
                 android:textColor="@android:color/white" />
 
+            <ImageView
+                android:id="@+id/iv_room_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@mipmap/icon_add"
+                android:paddingStart="12dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="4dp" />
         </LinearLayout>
 
         <View
@@ -253,6 +264,25 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/rv_common_root"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_album"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@mipmap/icon_picture"
+                android:drawablePadding="16dp"
+                android:text="相册"
+                android:textSize="13sp"
+                android:textColor="@color/textColor_33"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="51dp" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

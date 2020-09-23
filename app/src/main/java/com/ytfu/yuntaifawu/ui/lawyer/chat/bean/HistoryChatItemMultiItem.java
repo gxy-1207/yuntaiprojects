@@ -9,12 +9,12 @@ public class HistoryChatItemMultiItem implements MultiItemEntity {
     public static final int TYPE_RECEIVE_FEE = 3;
     public static final int TYPE_SEND_RED_PACKAGE = 5;
     public static final int TYPE_RECEIVE_RED_PACKAGE = 6;
+    public static final int TYPE_SEND_IMG = 7;
+    public static final int TYPE_RECEIVE_IMG = 8;
 
     @Override
     public String toString() {
-        return "HistoryChatItemMultiItem{" +
-                "chatItem=" + chatItem +
-                '}';
+        return "HistoryChatItemMultiItem{" + "chatItem=" + chatItem + '}';
     }
 
     private HistoryChatItemBean chatItem;
@@ -34,12 +34,19 @@ public class HistoryChatItemMultiItem implements MultiItemEntity {
                 } else if (ext.getType() == 3) {
                     return TYPE_SEND_RED_PACKAGE;
                 } else {
-                    return TYPE_SEND_MSG;
+                    HistoryChatBodyBean body = chatItem.getBody();
+                    if (body.getType() == 1) {
+                        return TYPE_SEND_MSG;
+                    } else {
+                        return TYPE_SEND_IMG;
+                    }
+                    //                    return TYPE_SEND_MSG;
                 }
             } else {
                 return TYPE_SEND_MSG;
             }
-            //            if (chatItem.getExt() == null || TextUtils.isEmpty(chatItem.getExt().getJiluid())) {
+            //            if (chatItem.getExt() == null ||
+            // TextUtils.isEmpty(chatItem.getExt().getJiluid())) {
             //
             //                return TYPE_SEND_MSG;
             //            } else {
@@ -53,13 +60,20 @@ public class HistoryChatItemMultiItem implements MultiItemEntity {
                 } else if (ext.getType() == 3) {
                     return TYPE_RECEIVE_RED_PACKAGE;
                 } else {
-                    return TYPE_RECEIVE_MSG;
+                    HistoryChatBodyBean body = chatItem.getBody();
+                    if (body.getType() == 1) {
+                        return TYPE_RECEIVE_MSG;
+                    } else {
+                        return TYPE_RECEIVE_IMG;
+                    }
+                    //                    return TYPE_RECEIVE_MSG;
                 }
             } else {
                 return TYPE_RECEIVE_MSG;
             }
 
-            //            if (chatItem.getExt() == null || TextUtils.isEmpty(chatItem.getExt().getJiluid())) {
+            //            if (chatItem.getExt() == null ||
+            // TextUtils.isEmpty(chatItem.getExt().getJiluid())) {
             //                return TYPE_RECEIVE_MSG;
             //            } else {
             //                return TYPE_RECEIVE_FEE;
@@ -74,5 +88,4 @@ public class HistoryChatItemMultiItem implements MultiItemEntity {
     public void setChatItem(HistoryChatItemBean chatItem) {
         this.chatItem = chatItem;
     }
-
 }

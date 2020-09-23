@@ -3,6 +3,7 @@
     <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#D81B60</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
     <color name="transparent_half">#ffffff</color>
     <color name="transparent_f2">#f2f2f2</color>
     <color name="transparent_ff">#00000000</color>

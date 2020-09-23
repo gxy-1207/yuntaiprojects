@@ -8,9 +8,14 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -19,9 +24,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -35,9 +42,15 @@ import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemChildLongClickListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
+import com.hyphenate.easeui.model.EaseCompat;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.util.XPopupUtils;
 import com.orhanobut.logger.Logger;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.Configuration;
+import com.qiniu.android.storage.UpCompletionHandler;
+import com.qiniu.android.storage.UploadManager;
+import com.yanzhenjie.permission.Permission;
 import com.ytfu.yuntaifawu.R;
 import com.ytfu.yuntaifawu.apis.HttpUtil;
 import com.ytfu.yuntaifawu.apis.MessageService;
@@ -51,6 +64,8 @@ import com.ytfu.yuntaifawu.ui.LvShiMainActivity;
 import com.ytfu.yuntaifawu.ui.UserMainActivity;
 import com.ytfu.yuntaifawu.ui.complaint.act.ComplaintListActivity;
 import com.ytfu.yuntaifawu.ui.lawyer.chat.adapter.LawyerChatRoomAdapter;
+import com.ytfu.yuntaifawu.ui.lawyer.chat.bean.GetQiniuTokenBean;
+import com.ytfu.yuntaifawu.ui.lawyer.chat.bean.HistoryChatBodyBean;
 import com.ytfu.yuntaifawu.ui.lawyer.chat.bean.HistoryChatExtBean;
 import com.ytfu.yuntaifawu.ui.lawyer.chat.bean.HistoryChatItemBean;
 import com.ytfu.yuntaifawu.ui.lawyer.chat.bean.HistoryChatItemMultiItem;
@@ -65,6 +80,7 @@ import com.ytfu.yuntaifawu.ui.mseeage.activity.LvShiDetailsActivity;
 import com.ytfu.yuntaifawu.ui.mseeage.bean.ConversationBean;
 import com.ytfu.yuntaifawu.ui.redpackage.act.LawyerRedPackageActivity;
 import com.ytfu.yuntaifawu.ui.users.act.MineConsultationListActivity;
+import com.ytfu.yuntaifawu.utils.AndPermissionUtil;
 import com.ytfu.yuntaifawu.utils.CommonUtil;
 import com.ytfu.yuntaifawu.utils.LoginHelper;
 import com.ytfu.yuntaifawu.utils.SpUtil;
@@ -78,7 +94,11 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerInd
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.CommonPagerTitleView;
 
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -108,17 +128,24 @@ public class LawyerChatRoomActivity
     @BindView(R.id.tv_room_send)
     TextView tv_room_send;
 
+    @BindView(R.id.iv_room_select)
+    ImageView iv_room_select;
+
     @BindView(R.id.tv_room_fee)
     TextView tv_room_fee;
 
-    private LawyerChatRoomAdapter adapter;
+    @BindView(R.id.mi_indicator)
+    MagicIndicator mi_indicator;
 
+    private LawyerChatRoomAdapter adapter;
+    private UploadManager uploadManager;
     // ===Desc:=================================================================
     private static final String KEY_TO_USER_ID = "KEY_TO_USER_ID";
     private static final String KEY_TO_USER_NAME = "KEY_TO_USER_NAME";
     private static final String KEY_TO_USER_AVATAR = "KEY_TO_USER_AVATAR";
     private static final String KEY_CONSULT_ID = "KEY_CONSULT_ID";
     private static final String KEY_IS_FROM_NOTIFICATION = "KEY_IS_FROM_NOTIFICATION";
+    private String qiNiToken;
 
     public static void start(
             Context context,
@@ -273,6 +300,7 @@ public class LawyerChatRoomActivity
                     @Override
                     public boolean onTouch(View view, MotionEvent motionEvent) {
                         hideControllerPanel(false);
+                        hideImgControllerPanel(false);
                         view.performClick();
                         return false;
                     }
@@ -283,13 +311,35 @@ public class LawyerChatRoomActivity
                     public void onFocusChange(View view, boolean b) {
                         if (b) {
                             hideControllerPanel(true);
+                            hideImgControllerPanel(true);
                         }
                     }
                 });
+        et_room_input.addTextChangedListener(
+                new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(
+                            CharSequence charSequence, int i, int i1, int i2) {}
 
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        String input = et_room_input.getText().toString();
+                        if (!input.isEmpty()) {
+                            tv_room_send.setVisibility(View.VISIBLE);
+                            iv_room_select.setVisibility(View.GONE);
+                        } else {
+                            tv_room_send.setVisibility(View.GONE);
+                            iv_room_select.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {}
+                });
         findViewById(R.id.tv_common_terms)
                 .setOnClickListener(
                         v -> {
+                            findViewById(R.id.rv_common_root).setVisibility(View.GONE);
                             View view = findViewById(R.id.rv_common_words_root);
                             CommonUtil.hideSoftInput(this);
                             if (view.isShown()) {
@@ -298,7 +348,20 @@ public class LawyerChatRoomActivity
                                 showControllerPanel2(0);
                             }
                         });
-
+        // 选择图片
+        findViewById(R.id.iv_room_select)
+                .setOnClickListener(
+                        view -> {
+                            mi_indicator.setVisibility(View.GONE);
+                            findViewById(R.id.rv_common_words_root).setVisibility(View.GONE);
+                            View viewById = findViewById(R.id.rv_common_root);
+                            CommonUtil.hideSoftInput(this);
+                            if (viewById.isShown()) {
+                                hideImgControllerPanel(true);
+                            } else {
+                                showImgControllerPanel2(0);
+                            }
+                        });
         findViewById(R.id.tv_room_complaint)
                 .setOnClickListener(
                         v -> {
@@ -306,6 +369,184 @@ public class LawyerChatRoomActivity
                             String lawyerId = LoginHelper.getInstance().getLoginUserId();
                             ComplaintListActivity.Companion.starter(mContext, owner, lawyerId);
                         });
+    }
+
+    private void showImgControllerPanel2(int i) {
+        CommonUtil.hideSoftInput(this);
+        findViewById(R.id.tv_album)
+                .setOnClickListener(
+                        view -> {
+                            //                            showToast("相册");
+                            selectPic();
+                        });
+        View view = findViewById(R.id.rv_common_root);
+
+        int height = XPopupUtils.getWindowHeight(mContext) / 8 * 2;
+        if (!view.isShown()) {
+            ValueAnimator anim = ValueAnimator.ofInt(0, height);
+            anim.addListener(
+                    new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animator) {
+                            view.setVisibility(View.VISIBLE);
+                            //                            ViewPager vp = findViewById(R.id.vp);
+                            //                            vp.setCurrentItem(position);
+                            //                    MagicIndicator mi =
+                            // findViewById(R.id.mi_indicator);
+                            //                    mi.getNavigator().notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animator) {}
+
+                        @Override
+                        public void onAnimationCancel(Animator animator) {}
+
+                        @Override
+                        public void onAnimationRepeat(Animator animator) {}
+                    });
+            anim.addUpdateListener(
+                    valueAnimator -> {
+                        view.getLayoutParams().height = (int) valueAnimator.getAnimatedValue();
+                        view.requestLayout();
+                    });
+            anim.setDuration(150);
+            anim.start();
+        }
+    }
+
+    protected static final int REQUEST_CODE_LOCAL = 3;
+
+    private void selectPic() {
+        getPresenter().getQiNiuToken();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_LOCAL) {
+            if (data != null) {
+                Uri selectedImage = data.getData();
+                if (selectedImage != null) {
+                    sendPicUri(selectedImage);
+                }
+            }
+        }
+    }
+
+    private void sendPicUri(Uri selectedImage) {
+        // 设置图片名字
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        String key =
+                "icon_"
+                        + sdf.format(new Date())
+                        + LoginHelper.getInstance().getLoginUserId()
+                        + ".png";
+        String path = EaseCompat.getPath(this, selectedImage);
+        //        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+        //        Cursor cursor =
+        //                this.getContentResolver().query(selectedImage, filePathColumn, null, null,
+        // null);
+        //        if (cursor != null) {
+        //            cursor.moveToFirst();
+        //            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+        //            String picturePath = cursor.getString(columnIndex);
+        //            cursor.close();
+        //            cursor = null;
+        //
+        //            if (picturePath == null || picturePath.equals("null")) {
+        //                Toast toast =
+        //                        Toast.makeText(
+        //                                this,
+        //                                com.hyphenate.easeui.R.string.cant_find_pictures,
+        //                                Toast.LENGTH_SHORT);
+        //                toast.setGravity(Gravity.CENTER, 0, 0);
+        //                toast.show();
+        //                return;
+        //            }
+        //            uploadImgQiNiu(picturePath, key, qiNiToken);
+        //            //            sendImageMessage(picturePath);
+        //        } else {
+        //            File file = new File(selectedImage.getPath());
+        //            if (!file.exists()) {
+        //                Toast toast =
+        //                        Toast.makeText(
+        //                                this,
+        //                                com.hyphenate.easeui.R.string.cant_find_pictures,
+        //                                Toast.LENGTH_SHORT);
+        //                toast.setGravity(Gravity.CENTER, 0, 0);
+        //                toast.show();
+        //                return;
+        //            }
+        uploadImgQiNiu(path, key, qiNiToken);
+        Log.e("path", "-------" + path);
+        Log.e("key", "-------" + key);
+        //            sendImageMessage(file.getAbsolutePath());
+        //        }
+    }
+
+    public void uploadImgQiNiu(String imagePath, String key, String token) {
+        Configuration configuration =
+                new Configuration.Builder().connectTimeout(10).responseTimeout(60).build();
+        if (uploadManager == null) {
+            uploadManager = new UploadManager(configuration);
+        }
+        uploadManager.put(
+                imagePath,
+                key,
+                token,
+                new UpCompletionHandler() {
+                    @Override
+                    public void complete(
+                            String s, ResponseInfo responseInfo, JSONObject jsonObject) {
+                        if (responseInfo.isOK()) {
+                            Log.e("qiniu", "-----" + s);
+                            String imageUrl = "http://chat.yuntaifawu.com/" + s;
+                            Logger.e(imageUrl);
+                            String selfId = SpUtil.getString(mContext, AppConstant.UID, "");
+                            String toUserId = getBundleString(KEY_TO_USER_ID, "");
+                            getPresenter().sendImgMessage(selfId, toUserId, imagePath, imageUrl);
+                        } else {
+                            Logger.e(responseInfo.error);
+                        }
+                    }
+                },
+                null);
+    }
+
+    private void hideImgControllerPanel(boolean b) {
+        View view = findViewById(R.id.rv_common_root);
+        int height = XPopupUtils.getWindowHeight(mContext) / 8 * 2;
+        if (b) {
+            if (view.isShown()) {
+                ValueAnimator anim = ValueAnimator.ofInt(height, 0);
+                anim.addListener(
+                        new Animator.AnimatorListener() {
+                            @Override
+                            public void onAnimationStart(Animator animator) {}
+
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                view.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onAnimationCancel(Animator animator) {}
+
+                            @Override
+                            public void onAnimationRepeat(Animator animator) {}
+                        });
+                anim.addUpdateListener(
+                        valueAnimator -> {
+                            view.getLayoutParams().height = (int) valueAnimator.getAnimatedValue();
+                            view.requestLayout();
+                        });
+                anim.setDuration(150);
+                anim.start();
+            }
+        } else {
+            view.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -434,6 +675,41 @@ public class LawyerChatRoomActivity
                                     HistoryChatExtBean ext = item.getChatItem().getExt();
                                     LawyerRedPackageActivity.start(mContext, ext);
                                 }
+                                break;
+                            case R.id.iv_chat_item_content:
+                                // 点击图片放大
+                                HistoryChatItemMultiItem itemImg =
+                                        LawyerChatRoomActivity.this.adapter.getData().get(position);
+                                if (null == itemImg) {
+                                    showToast("应用程序出现未知错误,请稍后重试");
+                                    return;
+                                }
+                                int type = itemImg.getItemType();
+                                if (type == HistoryChatItemMultiItem.TYPE_SEND_IMG
+                                        || type == HistoryChatItemMultiItem.TYPE_RECEIVE_IMG) {
+                                    HistoryChatBodyBean body = itemImg.getChatItem().getBody();
+                                    String messageId = itemImg.getChatItem().getMessageId();
+                                    Log.e("messageId", "------" + messageId);
+                                    String path = body.getText();
+                                    Log.e("path", "------" + path);
+                                    ImageView imageView =
+                                            view.findViewById(R.id.iv_chat_item_content);
+                                    int width = imageView.getWidth();
+                                    int height = imageView.getHeight();
+                                    int[] location = new int[2];
+                                    imageView.getLocationOnScreen(location);
+
+                                    ChatBigImageActivity.start(
+                                            LawyerChatRoomActivity.this,
+                                            path,
+                                            location[0],
+                                            location[1],
+                                            width,
+                                            height);
+                                }
+
+                                //                                EaseShowBigImageActivity
+
                                 break;
                         }
                     }
@@ -709,7 +985,32 @@ public class LawyerChatRoomActivity
                                         consultId,
                                         toUserId,
                                         fromUserId,
-                                        itemBean.getBody().getText());
+                                        itemBean.getBody().getText(),
+                                        "");
+                    }
+                });
+    }
+
+    @Override
+    public void onSendImgSuccess(
+            String toUserId, String fromUserId, HistoryChatItemBean itemBean, String imageUrl) {
+        runOnUiThread(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        // 更新adapter中ui显示
+                        int index = adapter.indexOfByMessageId(itemBean.getMessageId());
+                        if (index != -1) {
+                            HistoryChatItemMultiItem item = adapter.getData().get(index);
+                            item.getChatItem().setStatus(2);
+                            adapter.notifyItemChanged(index);
+                        }
+
+                        // 同步消息到服务器
+                        String consultId = getBundleString(KEY_CONSULT_ID, "");
+                        getPresenter()
+                                .lawyerSyncMessageToService(
+                                        consultId, toUserId, fromUserId, "", imageUrl);
                     }
                 });
     }
@@ -950,5 +1251,26 @@ public class LawyerChatRoomActivity
                     }
                 });
         ViewPagerHelper.bind(mi, vp);
+    }
+
+    @Override
+    public void onGetQiNiuToken(GetQiniuTokenBean tokenBean) {
+        qiNiToken = tokenBean.getToken();
+        Intent intent;
+        if (Build.VERSION.SDK_INT < 19) {
+            intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("image/*");
+        } else {
+            intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        }
+        // 请求权限
+        AndPermissionUtil.getInstance()
+                .requestPermissions(
+                        this,
+                        () -> {
+                            // permission are allowed.
+                            startActivityForResult(intent, REQUEST_CODE_LOCAL);
+                        },
+                        Permission.Group.STORAGE);
     }
 }

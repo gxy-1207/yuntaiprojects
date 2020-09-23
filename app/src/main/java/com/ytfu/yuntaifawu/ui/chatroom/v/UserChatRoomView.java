@@ -3,6 +3,7 @@ package com.ytfu.yuntaifawu.ui.chatroom.v;
 import com.ytfu.yuntaifawu.base.BaseView;
 import com.ytfu.yuntaifawu.ui.chatroom.bean.FeeWechatOrderResponse;
 import com.ytfu.yuntaifawu.ui.chatroom.bean.RoomLawyerCardInfoResponse;
+import com.ytfu.yuntaifawu.ui.lawyer.chat.bean.GetQiniuTokenBean;
 import com.ytfu.yuntaifawu.ui.lawyer.chat.bean.HistoryChatItemBean;
 import com.ytfu.yuntaifawu.ui.lawyer.chat.bean.HistoryChatItemMultiItem;
 import com.ytfu.yuntaifawu.ui.mseeage.bean.ExChangeWeiXinBean;
@@ -16,22 +17,23 @@ import java.util.List;
 
 public interface UserChatRoomView extends BaseView {
 
-    /**
-     * 获取历史记录成功
-     */
+    /** 获取历史记录成功 */
     void onGetHistoryRecordSuccess(List<HistoryChatItemMultiItem> data);
 
     void onGetHistoryRecordFail(String errorMsg);
 
-    //===Desc:=================================================================
+    // ===Desc:=================================================================
 
     void onSendTxtPre(HistoryChatItemBean itemBean);
 
     void onSendTxtSuccess(String toUserId, String fromUserId, HistoryChatItemBean itemBean);
 
+    void onSendImgSuccess(
+            String toUserId, String fromUserId, HistoryChatItemBean itemBean, String imageUrl);
+
     void onSendTxtFail(HistoryChatItemBean itemBean);
 
-    //===Desc:=================================================================
+    // ===Desc:=================================================================
 
     void onGetFeeWechatOrderSuccess(FeeWechatOrderResponse bean);
 
@@ -41,29 +43,29 @@ public interface UserChatRoomView extends BaseView {
 
     void onGetFeeAliOrderFail(String errorMsg);
 
-
     void onPayByAccountSuccess();
+
     void onPayByAccountFail();
 
-    //===Desc:=================================================================
+    // ===Desc:=================================================================
 
     void onGetLawyerCardInfoSuccess(RoomLawyerCardInfoResponse.LawyerCardInfo info);
 
     void onGetLawyerCardInfoFail(String errorMsg);
 
-    //===Desc:=================================================================
+    // ===Desc:=================================================================
 
     void onGetCustomerServiceMessageSuccess(List<ZiXunSendMessageBean.ListBean> list);
 
     void onGetCustomerServiceMessageFail(String errorMsg);
 
-    //===Desc:=================================================================
+    // ===Desc:=================================================================
 
     void onCheckPaySuccess(int requestCode, WhetherToPayBean bean);
 
     void onCheckPayFail(int requestCode, String errorMsg);
 
-    //===Desc:=================================================================
+    // ===Desc:=================================================================
     void onExchangeWeChatSuccess(ExChangeWeiXinBean data);
 
     void onExchangeWeChatFail(String errorMsg);
@@ -71,7 +73,6 @@ public interface UserChatRoomView extends BaseView {
     ///////////////////////////////////////////////////////////////////////////
     //
     ///////////////////////////////////////////////////////////////////////////
-
 
     void onTextReceived(List<HistoryChatItemMultiItem> list);
 
@@ -83,6 +84,8 @@ public interface UserChatRoomView extends BaseView {
 
     void onCheckMessagePayedSuccess(ToCheckPayBean data);
 
-
     void onGetRefundBtnVisible(RefundButtonVisibleBean visibleBean);
+
+    // ===Desc:=================================================================
+    void onGetQiNiuToken(GetQiniuTokenBean tokenBean);
 }
